@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.utils.timezone import utc
+from datetime import datetime
 # Create your models here.
 
 
@@ -10,6 +11,14 @@ class Post(models.Model):
 
     def __str__(self):
         return self.content
+
+    def get_time_diff(self):
+        now = datetime.datetime.utcnow().replace(tzinfo=utc)
+        timediff = now - self.pub_date
+        return timediff.total_seconds()
+
+    def get_votes(self):
+        Vote.objects.filter(post=self)
 
 
 class User(models.Model):
@@ -30,6 +39,9 @@ class Question(Post):
 
     def __str__(self):
         return self.title
+
+    def get_answers(self):
+        Vote.objects.filter(related_question=self)
 
 
 class Answer(Post):
