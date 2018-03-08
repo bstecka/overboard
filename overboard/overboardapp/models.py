@@ -33,20 +33,21 @@ class User(models.Model):
         return self.user_name
 
 
-class Question(Post):
+class Question(models.Model):
     title = models.CharField(max_length=200, default='')
+    content = models.CharField(max_length=600, default='')
+    pub_date = models.DateTimeField(default=datetime.now, blank=True)
     asked_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
-    def get_answers(self):
-        Vote.objects.filter(related_question=self)
 
-
-class Answer(Post):
+class Answer(models.Model):
     published_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    related_question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
+    content = models.CharField(max_length=600, default='')
+    pub_date = models.DateTimeField(default=datetime.now, blank=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     accepted = models.BooleanField()
 
     def __str__(self):
@@ -62,7 +63,7 @@ class Tag(models.Model):
 
 class QuestionsTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    #question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.tag.__str__() + ' ' + self.question.__str__()
