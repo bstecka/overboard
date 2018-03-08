@@ -23,3 +23,7 @@ $ 1. env\Scripts\activate 2. source myvenv/bin/activate
 (env) $ python manage.py migrate
 (env) $ python manage.py runserver
 ```
+
+```sh
+python manage.py migrate --run-syncdb
+```
