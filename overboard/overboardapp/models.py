@@ -18,9 +18,6 @@ class Post(models.Model):
         timediff = now - self.pub_date
         return timediff.total_seconds()
 
-    def get_votes(self):
-        Vote.objects.filter(post=self)
-
 
 class ExtendedUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -53,6 +50,7 @@ class Answer(models.Model):
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=200)
+    questions = models.ManyToManyField(Question)
 
     def __str__(self):
         return self.tag_name
