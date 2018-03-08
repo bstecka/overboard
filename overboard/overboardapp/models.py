@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.utils.timezone import utc
+from datetime import datetime
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -11,30 +13,38 @@ class Post(models.Model):
     def __str__(self):
         return self.content
 
+    def get_time_diff(self):
+        now = datetime.datetime.utcnow().replace(tzinfo=utc)
+        timediff = now - self.pub_date
+        return timediff.total_seconds()
 
-class User(models.Model):
-    user_name = models.CharField(max_length=200)
-    email = models.CharField(max_length=200)
-    login = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
+    def get_votes(self):
+        Vote.objects.filter(post=self)
+
+
+class ExtendedUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     reputation = models.IntegerField()
 
     def __str__(self):
-        return self.user_name
+        return self.user.__str__();
 
 
-class Question(Post):
+class Question(models.Model):
     title = models.CharField(max_length=200, default='')
-    asked_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    content = models.CharField(max_length=600, default='')
+    pub_date = models.DateTimeField(default=datetime.now, blank=True)
+    asked_by = models.ForeignKey(ExtendedUser, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
 
-class Answer(Post):
+class Answer(models.Model):
     published_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    related_question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
+    content = models.CharField(max_length=600, default='')
+    pub_date = models.DateTimeField(default=datetime.now, blank=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     accepted = models.BooleanField()
 
     def __str__(self):
@@ -74,7 +84,7 @@ class Badge(models.Model):
 
 
 class UsersBadge(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(ExtendedUser, on_delete=models.CASCADE)
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -89,7 +99,7 @@ class Notification(models.Model):
 
 
 class UsersNotification(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(ExtendedUser, on_delete=models.CASCADE)
     notification = models.ForeignKey(Notification, on_delete=models.CASCADE)
     notif_date = models.DateTimeField('date received')
 

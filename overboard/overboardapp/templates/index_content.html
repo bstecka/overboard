@@ -1,0 +1,43 @@
+
+{% extends 'masterpage.html' %}
+{% block content %}
+<div class="panel">
+    <div class="panel-heading">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Last questions</a></li>
+        <li role="presentation"><a href="/index/topweek/">Top week</a></li>
+        <li role="presentation"><a href="#">Top month</a></li>
+
+      </ul>
+
+    </div>
+
+    {%  for question in latest_questions %}
+    <div class="panel-body">
+      <div class="post-row">
+      <div class="col-md-2">
+        <table class="post-details">
+          <tr>
+            <td>{{ question.get_votes.count }}</td>
+            <td>{{ question.get_answers.count }}</td>
+          </tr>
+          <tr>
+            <th>votes</th>
+            <th>answers</th>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-10 panel post">
+          <div class="panel-heading">
+            <a href="#">{{ question.title }}</a>
+          </div>
+
+          <div class="panel-body">
+          </div>
+          <div class="panel-footer">asked {{ question.get_time_diff }} sec ago <a href="#">{{ question.asked_by }}</a></div>
+      </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
