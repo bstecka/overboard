@@ -11,7 +11,7 @@
   font-size: small;
 }
 
-.post .panel-footer{
+.post .panel-footer .panel-body-right{
   text-align: right;
 }
 
@@ -31,4 +31,9 @@
 .post-details th {
   text-align: center;
 
+}
+
+.click-for-more{
+  margin-top: 4%;
+  margin-bottom: 4%;
 }

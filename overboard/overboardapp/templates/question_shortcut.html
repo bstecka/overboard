@@ -1,0 +1,30 @@
+<div class="panel-body">
+    <div class="post-row">
+        <div class="col-md-2 col-xs-1">
+            <table class="post-details">
+                <tr>
+                    <td>{{ question.votes.count }}</td>
+                    <td>{{ question.answer_set.count }}</td>
+                </tr>
+                <tr>
+                    <th>votes</th>
+                    <th>answers</th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-10 panel post">
+            <div class="panel-heading">
+                <a href="/questions/{{ question.id }}/">{{ question.title }}</a>
+            </div>
+
+            <div class="panel-body">
+                {% for tag in question.tag_set.all %}
+                <button class="btn" type="button">{{ tag.tag_name }}</button>
+                {% endfor %}
+            </div>
+            <div class="panel-footer">
+                asked {{ question.get_time_diff }} sec ago by
+                <a href={% url 'questions' %}>{{ question.asked_by }}</a></div>
+        </div>
+    </div>
+</div>

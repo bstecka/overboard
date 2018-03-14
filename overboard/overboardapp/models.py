@@ -1,79 +1,74 @@
 from django.db import models
-from django.utils.timezone import utc
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 # Create your models here.
 
 
-class Post(models.Model):
-    content = models.CharField(max_length=600, default='')
-    pub_date = models.DateTimeField('date published')
-    score = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.content
-
-    def get_time_diff(self):
-        now = datetime.datetime.utcnow().replace(tzinfo=utc)
-        timediff = now - self.pub_date
-        return timediff.total_seconds()
-
-    def get_votes(self):
-        Vote.objects.filter(post=self)
-
-
-class ExtendedUser(models.Model):
+class UserExtended(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     reputation = models.IntegerField()
 
     def __str__(self):
-        return self.user.__str__();
+        return self.user.__str__()
+
+
+class Vote(models.Model):
+    vote_date = models.DateTimeField('date voted')
+    voter = models.ForeignKey(UserExtended, on_delete=models.CASCADE, null=True)
+    value = models.IntegerField()
+    limit = models.Q(app_label='overboardapp', model='question') | \
+        models.Q(app_label='overboardapp', model='answer')
+    content_type = models.ForeignKey(
+        ContentType,
+        limit_choices_to=limit,
+        null=True,
+        on_delete=models.CASCADE,
+        blank=True,
+    )
+    object_id = models.PositiveIntegerField(
+        null=True,
+    )
+    target = GenericForeignKey('content_type', 'object_id')
+
+    def __str__(self):
+        return 'Vote on ' + self.target.__str__()
 
 
 class Question(models.Model):
     title = models.CharField(max_length=200, default='')
     content = models.CharField(max_length=600, default='')
     pub_date = models.DateTimeField(default=datetime.now, blank=True)
-    asked_by = models.ForeignKey(ExtendedUser, null=True, on_delete=models.CASCADE)
+    asked_by = models.ForeignKey(UserExtended, null=True, on_delete=models.CASCADE)
+    votes = GenericRelation(Vote)
+
+    @property #EXAMPLE OF PROPERTY REACHABLE IN TEMPLATE
+    def all_vote_set(self):
+        votes_all = Vote.objects.all()
+        return votes_all
 
     def __str__(self):
-        return self.title
+        return 'Question ' + self.title.__str__()
 
 
 class Answer(models.Model):
-    published_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    published_by = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
     content = models.CharField(max_length=600, default='')
     pub_date = models.DateTimeField(default=datetime.now, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     accepted = models.BooleanField()
 
     def __str__(self):
-        return 'answer by ' + self.published_by.__str__() + ' to ' + self.question.__str__()
+        return 'Answer to ' + self.question.__str__()
 
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=200)
+    questions = models.ManyToManyField(Question)
 
     def __str__(self):
         return self.tag_name
-
-
-class QuestionsTag(models.Model):
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.tag.__str__() + ' ' + self.question.__str__()
-
-
-class Vote(models.Model):
-    vote_date = models.DateTimeField('date voted')
-    voter = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
-    value = models.IntegerField()
-
-    def __str__(self):
-        return 'vote'
 
 
 class Badge(models.Model):
@@ -84,7 +79,7 @@ class Badge(models.Model):
 
 
 class UsersBadge(models.Model):
-    user = models.ForeignKey(ExtendedUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -99,7 +94,7 @@ class Notification(models.Model):
 
 
 class UsersNotification(models.Model):
-    user = models.ForeignKey(ExtendedUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
     notification = models.ForeignKey(Notification, on_delete=models.CASCADE)
     notif_date = models.DateTimeField('date received')
 

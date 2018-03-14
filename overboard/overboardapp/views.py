@@ -1,8 +1,9 @@
  # overboardapp/views.py
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
 from .models import Notification
 from .models import Question
+import datetime
 
 
 # Create your views here.
@@ -23,9 +24,15 @@ class PageView(TemplateView):
 
 def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')[:10]
-    return render(request, 'index_content.html', {'latest_questions': latest_questions});
+    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'});
 
 
 def topweek_question_list(request):
-    latest_questions = Question.objects.all().order_by('-pub_date')[:10]
-    return render(request, 'index_content.html', {'latest_questions': latest_questions});
+    from_date = datetime.datetime.now() - datetime.timedelta(days=7)
+    latest_questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).order_by('-pub_date')[:10]
+    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'week'});
+
+
+def question_detail(request, question_id):   # Page with deatils of question
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'question_detail.html', {'question': question})
