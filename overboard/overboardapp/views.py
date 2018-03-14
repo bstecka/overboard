@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
 from .models import Notification
 from .models import Question
+from .forms import AnswerForm
+
 import datetime
 
 
@@ -35,4 +37,7 @@ def topweek_question_list(request):
 
 def question_detail(request, question_id):   # Page with deatils of question
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'question_detail.html', {'question': question})
+    form = AnswerForm
+    return render(request, 'question_detail.html', {'question': question, 'form': form})
+
+

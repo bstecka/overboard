@@ -1,0 +1,10 @@
+<form action="{% url "page" %}" method="post" class="login-container">
+        {% csrf_token %}
+        <div>
+        {{ form }}
+        </div>
+
+        <button type="submit" class="btn btn btn-primary" value="Submit">
+          Wyślij odpowiedź
+        </button>
+    </form>
