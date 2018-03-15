@@ -1,0 +1,9 @@
+{% extends 'masterpage.html' %}
+{% block title %}Most popular tags{% endblock %}
+{% block content %}
+<div class="panel">
+    {% for tag in tags %}
+        <button class="btn" onclick="location.href='/tags/{{ tag.id }}'" type="button">{{ tag.tag_name }}</button>
+    {% endfor %}
+</div>
+{% endblock %}
