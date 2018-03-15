@@ -1,6 +1,7 @@
  # overboardapp/views.py
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
+from django.db.models import Count
 from .models import Notification, Question, Tag
 import datetime
 
@@ -22,7 +23,7 @@ class PageView(TemplateView):
 
 
 def tag_list(request):
-    tags = Tag.objects.all().order_by('tag_name')
+    tags = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
     return render(request, 'tags.html', {'tags': tags})
 
 
