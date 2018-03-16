@@ -42,6 +42,17 @@
                 {% include 'answer_detail.html' %}
             {% endfor %}
         </div>
+
+    {% if user.is_authenticated %}
+        {% include "answer_form.html" %}
+    {% else %}
+        <div class="col-md-10 panel post">
+          <div class="panel-body click-for-more">
+              Znasz odpowiedź na to pytanie? <a href="{% url "login" %}">Zaloguj się</a>, aby móc jej udzielić!
+          </div>
+      </div>
+    {% endif %}
     </div>
 </div>
+
 {% endblock %}
