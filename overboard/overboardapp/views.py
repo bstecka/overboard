@@ -1,8 +1,8 @@
- # overboardapp/views.py
+# overboardapp/views.py
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
 from django.db.models import Count
-from .models import Notification, Question, Tag
+from .models import Notification, Question, Tag, User, UserExtended
 from .forms import AnswerForm
 import datetime
 
@@ -35,14 +35,15 @@ def latest_question_list(request):
 
 def topweek_question_list(request):
     from_date = datetime.datetime.now() - datetime.timedelta(days=7)
-    latest_questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).order_by('-pub_date')[:10]
+    latest_questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).order_by(
+        '-pub_date')[:10]
     return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'week'})
 
 
-def question_detail(request, question_id):   # Page with details of question
+def question_page(request, question_id):  # Page with details of question
     question = get_object_or_404(Question, pk=question_id)
     form = AnswerForm
-    return render(request, 'question_detail.html', {'question': question, 'form': form})
+    return render(request, 'question_page.html', {'question': question, 'form': form})
 
 
 def tag_page(request, tag_id):
@@ -50,3 +51,8 @@ def tag_page(request, tag_id):
     questions = Question.objects.filter(tag=tag)
     return render(request, 'tag_page.html', {'tag': tag, 'questions': questions})
 
+
+def user_page(request, user_id):
+    user = get_object_or_404(UserExtended, pk=user_id)
+    form = AnswerForm
+    return render(request, 'user_page.html', {'user': user, 'form': form})

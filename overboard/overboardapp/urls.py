@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^page/$', views.PageView.as_view(), name='page'),
     url(r'^questions/$', views.latest_question_list, name='questions'),
     path('tags/<int:tag_id>/', views.tag_page, name='tag_page'),
-    path('questions/<int:question_id>/', views.question_detail, name='question_detail'),
+    path('questions/<int:question_id>/', views.question_page, name='question_page'),
     url(r'^users/$', views.latest_question_list, name='users'),
+    path('users/<int:user_id>/', views.user_page, name='user_page'),
     path('', views.latest_question_list, name='latest_question_list'),
 ]

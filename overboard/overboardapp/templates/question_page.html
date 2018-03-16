@@ -27,8 +27,8 @@
                             {{ question.content }}
                         </div>
                         <div class="panel-body panel-body-right">
-                            asked {{ question.get_time_diff }} sec ago by
-                            <a href={% url 'users' %}>{{ question.asked_by }}</a>
+                            asked {{ answer.get_time_diff }} sec ago by
+                            <a href="/users/{{ question.asked_by.id }}">{{ question.asked_by }}</a>
                         </div>
                     </div>
                 </div>
@@ -43,9 +43,9 @@
             {% endfor %}
         </div>
 
-    {% if user.is_authenticated %}
-        {% include "answer_form.html" %}
-    {% else %}
+        {% if user.is_authenticated %}
+            {% include "answer_form.html" %}
+        {% else %}
         <div class="col-md-10 panel post">
           <div class="panel-body click-for-more">
               Znasz odpowiedź na to pytanie? <a href="{% url "login" %}">Zaloguj się</a>, aby móc jej udzielić!
