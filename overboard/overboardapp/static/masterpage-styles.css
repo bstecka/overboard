@@ -44,3 +44,10 @@
   padding-bottom: 5%;
   padding-top: 3%;
 }
+
+.header_answer{
+  padding-right: 10%;
+  padding-left: 10%;
+  font-weight: bold;
+  text-align: center;
+}
