@@ -32,10 +32,6 @@ class Vote(models.Model):
     )
     target = GenericForeignKey('content_type', 'object_id')
 
-    @property
-    def value__sum(self):
-        return "5"
-
     def __str__(self):
         return 'Vote on ' + self.target.__str__()
 

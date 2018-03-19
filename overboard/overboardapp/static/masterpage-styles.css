@@ -93,9 +93,6 @@ a {
   padding-left: 5px;
 }
 
-/* some simple transitions to make the upvote and downvote
-buttons fade in as a visual cue for the user */
-
 .glyphicon {
   opacity: 1;
   transition: opacity .25s ease-in-out;

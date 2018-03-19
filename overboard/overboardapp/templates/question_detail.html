@@ -32,7 +32,9 @@
                                     </button>
                                 </form>
                             </div>
-                            <div class="item top-buffer"><div class="label label-primary">{{ vote_sum.value__sum  }}</div></div>
+                            <div class="item top-buffer"><div class="label label-primary">
+                                {% if vote_sum.value__sum %}{{vote_sum.value__sum}}{% else %}0{% endif %}
+                            </div></div>
                             <div class="item move-right top-buffer">
                                 <form action="/questions/{{question.id}}/" method="post">
                                     {% csrf_token %}
