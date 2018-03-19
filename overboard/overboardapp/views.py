@@ -72,7 +72,7 @@ def question_detail(request, question_id):   # Page with details of question
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
-            if not found_duplicate_vote:
+            if not found_duplicate_vote and user_extended != question.asked_by:
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question_obj)
                 vote.save()
