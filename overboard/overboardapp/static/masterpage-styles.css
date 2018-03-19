@@ -27,9 +27,25 @@
   margin-top: 25%;
 }
 
+.unstyled {
+  background: none;
+  border-radius: 0px;
+  border: none;
+  outline: none;
+}
+
+.unstyled:active {
+  border-style: outset;
+  border: none;
+}
+
 .post-details th {
   text-align: center;
+}
 
+form {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .vote-area {
@@ -85,6 +101,10 @@ buttons fade in as a visual cue for the user */
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
+}
+
+.icon-success {
+  color: #d9534f;
 }
 
 .glyphicon:hover {

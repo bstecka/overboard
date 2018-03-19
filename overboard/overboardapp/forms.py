@@ -11,3 +11,8 @@ class AnswerForm(forms.Form):
         #answer validation
         return data
 
+
+class VoteForm(forms.Form):
+    user = forms.CharField(label='user', max_length=100)
+    vote = forms.IntegerField(label='vote')
+    question = forms.IntegerField(label='question')
