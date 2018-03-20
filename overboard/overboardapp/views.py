@@ -1,9 +1,11 @@
  # overboardapp/views.py
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
-from django.db.models import Count
-from .models import Notification, Question, Tag
-from .forms import AnswerForm
+from django.db.models import Count, Sum
+from django.contrib.auth.models import User
+from .models import Notification, Question, Tag, Vote, UserExtended
+from .forms import AnswerForm, VoteForm
+from django.http import HttpResponseRedirect
 import datetime
 
 
@@ -41,8 +43,44 @@ def topweek_question_list(request):
 
 def question_detail(request, question_id):   # Page with details of question
     question = get_object_or_404(Question, pk=question_id)
-    form = AnswerForm
-    return render(request, 'question_detail.html', {'question': question, 'form': form})
+    vote_sum = question.votes.all().aggregate(Sum('value'))
+    previous_vote = 0
+    username_f = request.user.get_username()
+    user_f = User.objects.filter(username=username_f).first()
+    user_extended_f = UserExtended.objects.filter(user=user_f).first()
+    for v in question.votes.all():
+        if v.voter == user_extended_f:
+            previous_vote = v.value
+    if request.POST:
+        form = VoteForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['user']
+            value = form.cleaned_data['vote']
+            question_id = form.cleaned_data['question']
+            user = User.objects.filter(username=username).first()
+            user_extended = UserExtended.objects.filter(user=user).first()
+            question_obj = Question.objects.filter(id=question_id).first()
+            found_duplicate_vote = False
+            found_opposite_vote = False
+            found_vote = Vote.objects.first()
+            for v in question_obj.votes.all():
+                if v.voter == user_extended and v.value == value:
+                    found_duplicate_vote = True
+                    found_vote = v
+                elif v.voter == user_extended:
+                    found_opposite_vote = True
+                    found_vote = v
+            if found_duplicate_vote or found_opposite_vote:
+                found_vote.delete()
+            if not found_duplicate_vote and user_extended != question.asked_by:
+                current_date = datetime.datetime.now()
+                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question_obj)
+                vote.save()
+            return HttpResponseRedirect('/questions/' + question_id.__str__())
+        else:
+            return HttpResponseRedirect('/404/')
+    return render(request, 'question_detail.html',
+                  {'question': question, 'vote_sum': vote_sum, 'previous_vote': previous_vote})
 
 
 def tag_page(request, tag_id):
