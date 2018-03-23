@@ -24,7 +24,7 @@
             </div>
             <div class="panel-footer">
                 asked {{ question.get_time_diff }} sec ago by
-                <a href={% url 'questions' %}>{{ question.asked_by }}</a></div>
+                <a href="/users/{{ question.asked_by.id }}/">{{ question.asked_by }}</a></div>
         </div>
     </div>
 </div>

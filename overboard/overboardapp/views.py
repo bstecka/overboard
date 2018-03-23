@@ -92,6 +92,12 @@ def tag_page(request, tag_id):
     return render(request, 'tag_page.html', {'tag': tag, 'questions': questions})
 
 
+def user_page(request, user_id):
+    otheruser = get_object_or_404(UserExtended, pk=user_id)
+    form = AnswerForm
+    return render(request, 'user_page.html', {'otheruser': otheruser, 'form': form})
+
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
