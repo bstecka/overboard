@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.db.models import Count, Sum
 from django.contrib.auth.models import User
 from .models import Notification, Question, Tag, Vote, UserExtended
-from .forms import AnswerForm, VoteForm
+from .forms import AnswerForm, VoteForm, RegistrationForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -92,9 +92,9 @@ def tag_page(request, tag_id):
     return render(request, 'tag_page.html', {'tag': tag, 'questions': questions})
 
 
-def signup(request):
+def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -103,5 +103,5 @@ def signup(request):
             login(request, user)
             return redirect('/index/')
     else:
-        form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        form = RegistrationForm()
+    return render(request, 'registration/register_form.html', {'form': form})
