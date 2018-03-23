@@ -14,4 +14,5 @@ urlpatterns = [
     path('questions/<int:question_id>/', views.question_detail, name='question_detail'),
     url(r'^users/$', views.latest_question_list, name='users'),
     path('', views.latest_question_list, name='latest_question_list'),
+    url(r'^signup/$', views.signup, name='signup'),
 ]
