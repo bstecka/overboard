@@ -16,14 +16,44 @@
             <div class="panel-body">
                 <div class="post-row">
                     <div class="col-md-1 col-xs-1">
-                        <table class="post-details">
-                            <tr><td>^</td></tr>
-                            <tr><th>{{ question.votes.count }}</th></tr>
-                            <tr><td>v</td></tr>
-                        </table>
+                        <div class="vote-area">
+
+                            <div class="item move-left">
+                                <form action="/questions/{{question.id}}/" method="post">
+                                    {% csrf_token %}
+                                    <input id="user" type="hidden" name="user" value="{{user.get_username}}">
+                                    <input id="question" type="hidden" name="question" value="{{question.id}}">
+                                    <input id="vote" type="hidden" name="vote" value="1">
+                                    <button class="unstyled" type="submit">
+                                    <i id="upvote"
+                                       class="{% if previous_vote == 1 %}icon-success{% endif %} glyphicon glyphicon-chevron-up"
+                                     >
+                                    </i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="item top-buffer"><div class="label label-primary">
+                                {% if vote_sum.value__sum %}{{vote_sum.value__sum}}{% else %}0{% endif %}
+                            </div></div>
+                            <div class="item move-right top-buffer">
+                                <form action="/questions/{{question.id}}/" method="post">
+                                    {% csrf_token %}
+                                    <input id="user2" type="hidden" name="user" value="{{user.get_username}}">
+                                    <input id="question2" type="hidden" name="question" value="{{question.id}}">
+                                    <input id="vote2" type="hidden" name="vote" value="-1">
+                                    <button class="unstyled" type="submit">
+                                    <i id="downvote"
+                                       class="{% if previous_vote == -1 %}icon-success{% endif %} glyphicon glyphicon-chevron-down"
+                                    ></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="col-md-11 panel post">
                         <div class="panel-heading">
+                            {{ user.get_username }}
                             {{ question.content }}
                         </div>
                         <div class="panel-body panel-body-right">

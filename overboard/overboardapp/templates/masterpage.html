@@ -7,11 +7,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'masterpage-styles.css' %}" />
+    <script src="{% static 'script.js' %}"></script>
   <title>{% block title %}Overboard{% endblock %}</title>
 
 </head>
@@ -32,9 +33,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Questions<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Tags</a></li>
-        <li><a href="#">Users</a></li>
+        <li {% if request.path == '/' %}class="active"{% endif %}><a href="/">Questions<span class="sr-only">(current)</span></a></li>
+        <li {% if request.path == '/tags/' %}class="active"{% endif %}><a href="/tags">Tags</a></li>
+        <li><a href="/">Users</a></li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
