@@ -1,11 +1,19 @@
 <div class="panel-body">
     <div class="post-row">
         <div class="col-md-1 col-xs-1">
-            <table class="post-details">
-                <tr><td>^</td></tr>
-                <tr><th>{{ answer.votes.count }}</th></tr>
-                <tr><td>v</td></tr>
-            </table>
+            <div class="vote-area">
+                <div class="item move-right">
+                    <i id="upvote" class=" glyphicon glyphicon-chevron-up"></i>
+                </div>
+                <div class="item top-buffer">
+                    <div class="label label-primary">
+                        {% if answer.vote_sum.value__sum %}{{answer.vote_sum.value__sum}}{% else %}0{% endif %}
+                    </div>
+                </div>
+                <div class="item move-right top-buffer">
+                    <i id="downvote" class=" glyphicon glyphicon-chevron-down"></i>
+                </div>
+            </div>
         </div>
         <div class="col-md-11 panel post">
             <div class="panel-heading">
@@ -13,7 +21,7 @@
             </div>
             <div class="panel-body panel-body-right">
                 answered {{ answer.get_time_diff }} sec ago by
-                <a href={% url 'users' %}>{{ answer.published_by }}</a>
+                <a href="/users/{{ answer.published_by.id }}/">{{ answer.published_by }}</a>
             </div>
         </div>
     </div>

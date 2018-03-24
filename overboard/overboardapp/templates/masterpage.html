@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="#">OverBoard</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,20 +48,20 @@
           {% if user.is_authenticated %}
          <li>
              <a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon
-                    glyphicon-log-in"></span> Wyloguj </a>
+                    glyphicon-log-in"></span> Log out </a>
          </li>
          <li>
-             <a href="#"><span class="glyphicon
+             <a href="/users/{{ user.id }}"><span class="glyphicon
                     glyphicon-user"></span> {{ user.get_username }} </a>
          </li>
           {% else %}
          <li>
              <a href="{% url 'login'%}?next={{request.path}}"><span class="glyphicon
-                    glyphicon-log-in"></span> Zaloguj </a>
+                    glyphicon-log-in"></span> Log in </a>
          </li>
          <li>
-             <a href="#"><span class="glyphicon
-                    glyphicon-user"></span> Zarejestruj </a>
+             <a href="{% url 'register'%}"><span class="glyphicon
+                    glyphicon-user"></span> Register </a>
          </li>
           {% endif %}
 
@@ -70,7 +70,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container"> <!-- proper content here -->
+<div class="container my-container"> <!-- proper content here -->
     {% block content %}
     {% endblock %}
 </div>

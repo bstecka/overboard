@@ -3,6 +3,7 @@
 {% block title %}{{ tag.tag_name }}{% endblock %}
 {% block content %}
 <div class="panel">
+<h2>Questions with tag: <button class="btn">{{ tag.tag_name }}</button></h2>
 
     {%  for question in questions %}
         {% include 'question_shortcut.html' %}

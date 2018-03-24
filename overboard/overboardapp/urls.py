@@ -13,5 +13,7 @@ urlpatterns = [
     path('tags/<int:tag_id>/', views.tag_page, name='tag_page'),
     path('questions/<int:question_id>/', views.question_detail, name='question_detail'),
     url(r'^users/$', views.latest_question_list, name='users'),
+    path('users/<int:user_id>/', views.user_page, name='user_page'),
     path('', views.latest_question_list, name='latest_question_list'),
+    url(r'^register/$', views.register, name='register'),
 ]

@@ -4,8 +4,11 @@ from django.views.generic import TemplateView
 from django.db.models import Count, Sum
 from django.contrib.auth.models import User
 from .models import Notification, Question, Tag, Vote, UserExtended
-from .forms import AnswerForm, VoteForm
+from .forms import AnswerForm, VoteForm, RegistrationForm
 from django.http import HttpResponseRedirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 import datetime
 
 
@@ -88,3 +91,23 @@ def tag_page(request, tag_id):
     questions = Question.objects.filter(tag=tag)
     return render(request, 'tag_page.html', {'tag': tag, 'questions': questions})
 
+
+def user_page(request, user_id):
+    otheruser = get_object_or_404(UserExtended, pk=user_id)
+    form = AnswerForm
+    return render(request, 'user_page.html', {'otheruser': otheruser, 'form': form})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/index/')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register_form.html', {'form': form})

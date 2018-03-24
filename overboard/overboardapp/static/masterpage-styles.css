@@ -116,3 +116,15 @@ a {
   opacity: 0.75;
   cursor: pointer;
 }
+
+.my-container {
+    min-height: 572px;
+}
+
+.middle {
+    margin: 0 30%;
+}
+
+.button-blue{
+
+}
