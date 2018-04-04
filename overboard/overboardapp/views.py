@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.db.models import Count, Sum
 from django.contrib.auth.models import User
 from .models import Notification, Question, Tag, Vote, UserExtended
-from .forms import AnswerForm, VoteForm, RegistrationForm
+from .forms import AnswerForm, VoteForm, RegistrationForm, NewQuestionForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -115,3 +115,13 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(request, 'registration/register_form.html', {'form': form})
+
+
+def new_question(request):
+    if request.POST:
+        form = NewQuestionForm(request.POST, user=UserExtended.objects.filter(user=request.user).first(), pub_date=datetime.datetime.now())
+        form.save()
+        return redirect('/users/' + request.user.id.__str__())
+    else:
+        form = NewQuestionForm(user=UserExtended.objects.filter(user=request.user).first(), pub_date=datetime.datetime.now())
+    return render(request, 'new_question.html', {'form': form})
