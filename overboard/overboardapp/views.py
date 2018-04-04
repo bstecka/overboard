@@ -81,7 +81,11 @@ def question_detail(request, question_id):   # Page with details of question
                 vote.save()
             return HttpResponseRedirect('/questions/' + question_id.__str__())
         else:
-            return HttpResponseRedirect('/404/')
+            if form.cleaned_data['question'] is not None:
+                question_id = form.cleaned_data['question']
+                return HttpResponseRedirect('/accounts/login/?next=/questions/' + question_id.__str__())
+            else:
+                return HttpResponseRedirect('/404')
     return render(request, 'question_detail.html',
                   {'question': question, 'vote_sum': vote_sum, 'previous_vote': previous_vote})
 
