@@ -13,7 +13,7 @@ class AnswerForm(forms.Form):
 class VoteForm(forms.Form):
     user = forms.CharField(label='user', max_length=100)
     vote = forms.IntegerField(label='vote')
-    question = forms.IntegerField(label='question')
+    target = forms.IntegerField(label='target')
 
 
 class RegistrationForm(UserCreationForm):

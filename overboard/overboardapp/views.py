@@ -48,8 +48,7 @@ def question_detail(request, question_id):   # Page with details of question
     question = get_object_or_404(Question, pk=question_id)
     vote_sum = question.votes.all().aggregate(Sum('value'))
     previous_vote = 0
-    username_f = request.user.get_username()
-    user_f = User.objects.filter(username=username_f).first()
+    user_f = User.objects.filter(username=request.user.get_username()).first()
     user_extended_f = UserExtended.objects.filter(user=user_f).first()
     for v in question.votes.all():
         if v.voter == user_extended_f:
@@ -58,29 +57,24 @@ def question_detail(request, question_id):   # Page with details of question
         form = VoteForm(request.POST)
         answer_form = AnswerForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['user']
             value = form.cleaned_data['vote']
-            question_id = form.cleaned_data['question']
-            user = User.objects.filter(username=username).first()
-            user_extended = UserExtended.objects.filter(user=user).first()
-            question_obj = Question.objects.filter(id=question_id).first()
             found_duplicate_vote = False
             found_opposite_vote = False
             found_vote = Vote.objects.first()
-            for v in question_obj.votes.all():
-                if v.voter == user_extended and v.value == value:
+            for v in question.votes.all():
+                if v.voter == user_extended_f and v.value == value:
                     found_duplicate_vote = True
                     found_vote = v
-                elif v.voter == user_extended:
+                elif v.voter == user_extended_f:
                     found_opposite_vote = True
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
-            if not found_duplicate_vote and user_extended != question.asked_by:
+            if not found_duplicate_vote and user_extended_f != question.asked_by:
                 current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question_obj)
+                vote = Vote.objects.create(voter=user_extended_f, vote_date=current_date, value=value, target=question)
                 vote.save()
-            return HttpResponseRedirect('/questions/' + question_id.__str__())
+            return HttpResponseRedirect('/questions/' + question.id.__str__())
         elif answer_form.is_valid():
             current_date = datetime.datetime.now()
             answer_text = answer_form.cleaned_data['answer']
@@ -89,9 +83,8 @@ def question_detail(request, question_id):   # Page with details of question
             )
             answer.save()
             return HttpResponseRedirect('/questions/' + question.id.__str__())
-        elif form.cleaned_data['question'] is not None:
-            question_id = form.cleaned_data['question']
-            return HttpResponseRedirect('/accounts/login/?next=/questions/' + question_id.__str__())
+        elif question is not None:
+            return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
         else:
             return HttpResponseRedirect('/404')
     return render(request, 'question_detail.html',
