@@ -16,6 +16,13 @@ class VoteForm(forms.Form):
     target = forms.IntegerField(label='target')
 
 
+class AnswerVoteForm(forms.Form):
+    user = forms.CharField(label='user', max_length=100)
+    vote = forms.IntegerField(label='vote')
+    target = forms.IntegerField(label='target')
+    answer = forms.CharField(label='answer', max_length=100)
+
+
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
