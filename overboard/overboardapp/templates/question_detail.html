@@ -22,7 +22,7 @@
                                 <form action="/questions/{{question.id}}/" method="post">
                                     {% csrf_token %}
                                     <input id="user" type="hidden" name="user" value="{{user.get_username}}">
-                                    <input id="question" type="hidden" name="question" value="{{question.id}}">
+                                    <input id="target" type="hidden" name="target" value="{{question.id}}">
                                     <input id="vote" type="hidden" name="vote" value="1">
                                     <button class="unstyled" type="submit">
                                     <i id="upvote"
@@ -39,7 +39,7 @@
                                 <form action="/questions/{{question.id}}/" method="post">
                                     {% csrf_token %}
                                     <input id="user2" type="hidden" name="user" value="{{user.get_username}}">
-                                    <input id="question2" type="hidden" name="question" value="{{question.id}}">
+                                    <input id="target2" type="hidden" name="target" value="{{question.id}}">
                                     <input id="vote2" type="hidden" name="vote" value="-1">
                                     <button class="unstyled" type="submit">
                                     <i id="downvote"
@@ -48,12 +48,10 @@
                                     </button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-md-11 panel post">
                         <div class="panel-heading">
-                            {{ user.get_username }}
                             {{ question.content }}
                         </div>
                         <div class="panel-body panel-body-right">
@@ -74,7 +72,7 @@
         </div>
 
     {% if user.is_authenticated %}
-        {% include "answer_form.html" %}
+        {% include "answer_form.html" with question_id=question.id user=user %}
     {% else %}
         <div class="col-md-10 panel post">
           <div class="panel-body click-for-more">
