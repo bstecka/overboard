@@ -23,7 +23,7 @@
                 {% endfor %}
             </div>
             <div class="panel-footer">
-                asked {{ question.get_time_diff }} sec ago by
+                asked on {{ question.pub_date }} by
                 <a href="/users/{{ question.asked_by.id }}/">{{ question.asked_by }}</a></div>
         </div>
     </div>

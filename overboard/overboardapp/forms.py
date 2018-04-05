@@ -3,7 +3,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Question
+from .models import Question, Tag
+import re
 
 
 class AnswerForm(forms.Form):
@@ -29,6 +30,7 @@ class RegistrationForm(UserCreationForm):
 class NewQuestionForm(forms.Form):
     title = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    tags = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 2}), help_text='Tag should be one string of characters started with # sign. Separate tags with whitespace.')
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -41,6 +43,16 @@ class NewQuestionForm(forms.Form):
                                            content=self.data['content'],
                                            pub_date=self.pub_date)
         question.save()
+
+        regex = re.compile('#*')
+        tagsList = [tag for tag in self.data['tags'].split() if regex.match(tag)]
+        tagsNames = [re.sub('#', '', tag) for tag in tagsList]
+
+        for tagName in tagsNames:
+            tag = Tag.objects.create(tag_name=tagName)
+            tag.questions.add(question)
+            tag.save()
+
         return
 
 
