@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.db.models import Count, Sum
 from django.contrib.auth.models import User
 from .models import Notification, Question, Tag, Vote, UserExtended, Answer
-from .forms import AnswerForm, VoteForm, RegistrationForm, NewQuestionForm
+from .forms import AnswerForm, VoteForm, AnswerVoteForm, RegistrationForm, NewQuestionForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -48,47 +48,86 @@ def question_detail(request, question_id):   # Page with details of question
     question = get_object_or_404(Question, pk=question_id)
     vote_sum = question.votes.all().aggregate(Sum('value'))
     previous_vote = 0
-    user_f = User.objects.filter(username=request.user.get_username()).first()
-    user_extended_f = UserExtended.objects.filter(user=user_f).first()
+    user = User.objects.filter(username=request.user.get_username()).first()
+    user_extended = UserExtended.objects.filter(user=user).first()
+
+    answers = Answer.objects.filter(question=question)
+    answer_votes = {'answer_id': 0}
+    answer_sums = {'answer_id': 0}
+    for a in answers.all():
+        answer_sums[a.id] = a.votes.aggregate(Sum('value'))
+        for v in a.votes.all():
+            if v.voter == user_extended:
+                answer_votes[a.id] = v.value
+
     for v in question.votes.all():
-        if v.voter == user_extended_f:
+        if v.voter == user_extended:
             previous_vote = v.value
+
     if request.POST:
-        form = VoteForm(request.POST)
+        vote_form = VoteForm(request.POST)
+        answer_vote_form = AnswerVoteForm(request.POST)
         answer_form = AnswerForm(request.POST)
-        if form.is_valid():
-            value = form.cleaned_data['vote']
+
+        if user_extended is None:
+            return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
+
+        if answer_vote_form.is_valid():
+            value = answer_vote_form.cleaned_data['vote']
+            answer = Answer.objects.filter(id=answer_vote_form.cleaned_data['target']).first()
             found_duplicate_vote = False
             found_opposite_vote = False
             found_vote = Vote.objects.first()
-            for v in question.votes.all():
-                if v.voter == user_extended_f and v.value == value:
+            for v in answer.votes.all():
+                if v.voter == user_extended and v.value == value:
                     found_duplicate_vote = True
                     found_vote = v
-                elif v.voter == user_extended_f:
+                elif v.voter == user_extended:
                     found_opposite_vote = True
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
-            if not found_duplicate_vote and user_extended_f != question.asked_by:
+            if not found_duplicate_vote and user_extended != answer.published_by:
                 current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user_extended_f, vote_date=current_date, value=value, target=question)
+                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=answer)
                 vote.save()
             return HttpResponseRedirect('/questions/' + question.id.__str__())
+
+        elif vote_form.is_valid():
+            value = vote_form.cleaned_data['vote']
+            found_duplicate_vote = False
+            found_opposite_vote = False
+            found_vote = Vote.objects.first()
+            for v in question.votes.all():
+                if v.voter == user_extended and v.value == value:
+                    found_duplicate_vote = True
+                    found_vote = v
+                elif v.voter == user_extended:
+                    found_opposite_vote = True
+                    found_vote = v
+            if found_duplicate_vote or found_opposite_vote:
+                found_vote.delete()
+            if not found_duplicate_vote and user_extended != question.asked_by:
+                current_date = datetime.datetime.now()
+                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question)
+                vote.save()
+            return HttpResponseRedirect('/questions/' + question.id.__str__())
+
         elif answer_form.is_valid():
             current_date = datetime.datetime.now()
             answer_text = answer_form.cleaned_data['answer']
             answer = Answer.objects.create(
-                published_by=user_extended_f, content=answer_text, pub_date=current_date, question=question, accepted=0
+                published_by=user_extended, content=answer_text, pub_date=current_date, question=question, accepted=0
             )
             answer.save()
             return HttpResponseRedirect('/questions/' + question.id.__str__())
-        elif question is not None:
-            return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
+
         else:
             return HttpResponseRedirect('/404')
+
     return render(request, 'question_detail.html',
-                  {'question': question, 'vote_sum': vote_sum, 'previous_vote': previous_vote})
+                  {'question': question, 'answersums': answer_sums, 'answervotes': answer_votes,
+                   'vote_sum': vote_sum, 'previous_vote': previous_vote})
 
 
 def tag_page(request, tag_id):

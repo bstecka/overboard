@@ -17,7 +17,6 @@
                 <div class="post-row">
                     <div class="col-md-1 col-xs-1">
                         <div class="vote-area">
-
                             <div class="item move-left">
                                 <form action="/questions/{{question.id}}/" method="post">
                                     {% csrf_token %}
@@ -67,7 +66,7 @@
 
         <div class="panel-group">
             {% for answer in question.answer_set.all %}
-                {% include 'answer_detail.html' %}
+                {% include 'answer_detail.html' with user=user sum=answersums|get_item:answer.id vote=answervotes|get_item:answer.id %}
             {% endfor %}
         </div>
 

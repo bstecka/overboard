@@ -58,6 +58,7 @@ class Answer(models.Model):
     pub_date = models.DateTimeField(default=datetime.now, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     accepted = models.BooleanField()
+    votes = GenericRelation(Vote)
 
     def __str__(self):
         return 'Answer to ' + self.question.__str__()
