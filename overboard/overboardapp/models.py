@@ -86,6 +86,7 @@ class UsersBadge(models.Model):
     def __str__(self):
         return self.user.__str__() + ' ' + self.badge.__str__()
 
+#modele notyfikacji do osobnej aplikacji
 
 class Notification(models.Model):
     notification_text = models.CharField(max_length=200)

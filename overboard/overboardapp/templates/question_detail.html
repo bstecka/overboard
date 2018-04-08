@@ -18,9 +18,8 @@
                     <div class="col-md-1 col-xs-1">
                         <div class="vote-area">
                             <div class="item move-left">
-                                <form action="/questions/{{question.id}}/" method="post">
+                                <form action="/question_vote/{{question.id}}/" method="post">
                                     {% csrf_token %}
-                                    <input id="user" type="hidden" name="user" value="{{user.get_username}}">
                                     <input id="target" type="hidden" name="target" value="{{question.id}}">
                                     <input id="vote" type="hidden" name="vote" value="1">
                                     <button class="unstyled" type="submit">
@@ -35,9 +34,8 @@
                                 {% if vote_sum.value__sum %}{{vote_sum.value__sum}}{% else %}0{% endif %}
                             </div></div>
                             <div class="item move-right top-buffer">
-                                <form action="/questions/{{question.id}}/" method="post">
+                                <form action="/question_vote/{{question.id}}/" method="post">
                                     {% csrf_token %}
-                                    <input id="user2" type="hidden" name="user" value="{{user.get_username}}">
                                     <input id="target2" type="hidden" name="target" value="{{question.id}}">
                                     <input id="vote2" type="hidden" name="vote" value="-1">
                                     <button class="unstyled" type="submit">
