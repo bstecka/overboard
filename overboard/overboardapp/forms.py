@@ -12,13 +12,11 @@ class AnswerForm(forms.Form):
 
 
 class VoteForm(forms.Form):
-    user = forms.CharField(label='user', max_length=100)
     vote = forms.IntegerField(label='vote')
     target = forms.IntegerField(label='target')
 
 
 class AnswerVoteForm(forms.Form):
-    user = forms.CharField(label='user', max_length=100)
     vote = forms.IntegerField(label='vote')
     target = forms.IntegerField(label='target')
     answer = forms.CharField(label='answer', max_length=100)
@@ -51,7 +49,7 @@ class NewQuestionForm(forms.Form):
                                            pub_date=self.pub_date)
         question.save()
 
-        regex = re.compile('#*')
+        regex = re.compile('^#*')
         tagsList = [tag for tag in self.data['tags'].split() if regex.match(tag)]
         tagsNames = [re.sub('#', '', tag) for tag in tagsList]
 

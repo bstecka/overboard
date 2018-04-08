@@ -44,34 +44,64 @@ def topweek_question_list(request):
     return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'week'})
 
 
-def question_detail(request, question_id):   # Page with details of question
+def new_answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    vote_sum = question.votes.all().aggregate(Sum('value'))
-    previous_vote = 0
-    user = User.objects.filter(username=request.user.get_username()).first()
+    user = request.user
+    if not user.is_authenticated:  # na reverse'ie??????
+        return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
     user_extended = UserExtended.objects.filter(user=user).first()
+    if request.POST:
+        answer_form = AnswerForm(request.POST)
+        if answer_form.is_valid():
+            current_date = datetime.datetime.now()
+            answer_text = answer_form.cleaned_data['answer']
+            answer = Answer.objects.create(
+                published_by=user_extended, content=answer_text, pub_date=current_date, question=question, accepted=0
+            )
+            answer.save()
+    return HttpResponseRedirect('/questions/' + question.id.__str__())
 
-    answers = Answer.objects.filter(question=question)
-    answer_votes = {'answer_id': 0}
-    answer_sums = {'answer_id': 0}
-    for a in answers.all():
-        answer_sums[a.id] = a.votes.aggregate(Sum('value'))
-        for v in a.votes.all():
-            if v.voter == user_extended:
-                answer_votes[a.id] = v.value
 
-    for v in question.votes.all():
-        if v.voter == user_extended:
-            previous_vote = v.value
-
+def question_vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    user = request.user
+    if not user.is_authenticated:  # na reverse'ie??????
+        return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
+    user_extended = UserExtended.objects.filter(user=user).first()
     if request.POST:
         vote_form = VoteForm(request.POST)
+        if vote_form.is_valid():
+            value = vote_form.cleaned_data['vote']
+            found_duplicate_vote = False
+            found_opposite_vote = False
+            found_vote = Vote.objects.first()
+            for v in question.votes.all():
+                if v.voter == user_extended and v.value == value:
+                    found_duplicate_vote = True
+                    found_vote = v
+                elif v.voter == user_extended:
+                    found_opposite_vote = True
+                    found_vote = v
+            if found_duplicate_vote or found_opposite_vote:
+                found_vote.delete()
+            if not found_duplicate_vote and user_extended != question.asked_by:
+                current_date = datetime.datetime.now()
+                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question)
+                vote.save()
+            return HttpResponseRedirect('/questions/' + question.id.__str__())
+        else:
+            return HttpResponseRedirect('/404')
+    return HttpResponseRedirect('/questions/' + question.id.__str__())
+
+
+def answer_vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    user = request.user
+    if not user.is_authenticated:  # na reverse'ie??????
+        return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
+    user_extended = UserExtended.objects.filter(user=user).first()
+    if request.POST:
         answer_vote_form = AnswerVoteForm(request.POST)
-        answer_form = AnswerForm(request.POST)
-
-        if user_extended is None:
-            return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
-
         if answer_vote_form.is_valid():
             value = answer_vote_form.cleaned_data['vote']
             answer = Answer.objects.filter(id=answer_vote_form.cleaned_data['target']).first()
@@ -92,38 +122,28 @@ def question_detail(request, question_id):   # Page with details of question
                 vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=answer)
                 vote.save()
             return HttpResponseRedirect('/questions/' + question.id.__str__())
+    return HttpResponseRedirect('/questions/' + question.id.__str__())
 
-        elif vote_form.is_valid():
-            value = vote_form.cleaned_data['vote']
-            found_duplicate_vote = False
-            found_opposite_vote = False
-            found_vote = Vote.objects.first()
-            for v in question.votes.all():
-                if v.voter == user_extended and v.value == value:
-                    found_duplicate_vote = True
-                    found_vote = v
-                elif v.voter == user_extended:
-                    found_opposite_vote = True
-                    found_vote = v
-            if found_duplicate_vote or found_opposite_vote:
-                found_vote.delete()
-            if not found_duplicate_vote and user_extended != question.asked_by:
-                current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question)
-                vote.save()
-            return HttpResponseRedirect('/questions/' + question.id.__str__())
 
-        elif answer_form.is_valid():
-            current_date = datetime.datetime.now()
-            answer_text = answer_form.cleaned_data['answer']
-            answer = Answer.objects.create(
-                published_by=user_extended, content=answer_text, pub_date=current_date, question=question, accepted=0
-            )
-            answer.save()
-            return HttpResponseRedirect('/questions/' + question.id.__str__())
+def question_detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    vote_sum = question.votes.all().aggregate(Sum('value'))
+    previous_vote = 0
+    user = User.objects.filter(username=request.user.get_username()).first()
+    user_extended = UserExtended.objects.filter(user=user).first()
 
-        else:
-            return HttpResponseRedirect('/404')
+    answers = Answer.objects.filter(question=question)
+    answer_votes = {'answer_id': 0}
+    answer_sums = {'answer_id': 0}
+    for a in answers.all():
+        answer_sums[a.id] = a.votes.aggregate(Sum('value'))
+        for v in a.votes.all():
+            if v.voter == user_extended:
+                answer_votes[a.id] = v.value
+
+    for v in question.votes.all():
+        if v.voter == user_extended:
+            previous_vote = v.value
 
     return render(request, 'question_detail.html',
                   {'question': question, 'answersums': answer_sums, 'answervotes': answer_votes,
