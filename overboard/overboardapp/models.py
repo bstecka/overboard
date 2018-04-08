@@ -3,20 +3,31 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
 
 class UserExtended(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    reputation = models.IntegerField()
+    reputation = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.__str__()
 
+    @receiver(post_save, sender=User)
+    def create_user_extended(sender, instance, created, **kwargs):
+        if created:
+            UserExtended.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_extended(sender, instance, **kwargs):
+        instance.userextended.save()
+
 
 class Vote(models.Model):
     vote_date = models.DateTimeField('date voted')
-    voter = models.ForeignKey(UserExtended, on_delete=models.CASCADE, null=True)
+    voter = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     value = models.IntegerField()
     limit = models.Q(app_label='overboardapp', model='question') | \
         models.Q(app_label='overboardapp', model='answer')
@@ -40,7 +51,7 @@ class Question(models.Model):
     title = models.CharField(max_length=200, default='')
     content = models.CharField(max_length=600, default='')
     pub_date = models.DateTimeField(default=datetime.now, blank=True)
-    asked_by = models.ForeignKey(UserExtended, null=True, on_delete=models.CASCADE)
+    asked_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     votes = GenericRelation(Vote)
 
     @property #EXAMPLE OF PROPERTY REACHABLE IN TEMPLATE
@@ -53,7 +64,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    published_by = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
+    published_by = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=600, default='')
     pub_date = models.DateTimeField(default=datetime.now, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
@@ -80,7 +91,7 @@ class Badge(models.Model):
 
 
 class UsersBadge(models.Model):
-    user = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -96,7 +107,7 @@ class Notification(models.Model):
 
 
 class UsersNotification(models.Model):
-    user = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     notification = models.ForeignKey(Notification, on_delete=models.CASCADE)
     notif_date = models.DateTimeField('date received')
 
