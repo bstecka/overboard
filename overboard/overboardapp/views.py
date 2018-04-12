@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 
 
@@ -35,7 +36,10 @@ def tag_list(request):
 
 def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')[:10]
-    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
+    paginator = Paginator(latest_questions, 5)
+    page = request.GET.get('page')
+    questions = paginator.get_page(page)
+    return render(request, 'index_content.html', {'questions': questions, 'selected_tab': 'last'})
 
 
 def topweek_question_list(request):

@@ -20,6 +20,25 @@
     {% endfor %}
 
 
+    <div class="pagination">
+        <span class="step-links">
+            {% if questions.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ questions.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+            </span>
+
+            {% if questions.has_next %}
+                <a href="?page={{ questions.next_page_number }}">next</a>
+                <a href="?page={{ questions.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
       <div class="col-md-10 panel post">
           <div class="panel-body click-for-more">
               Looking for more? Browse the <a href="#">complete list of questions</a>, or <a href="#">popular tags</a>. Help us answer unanswered questions.<br>

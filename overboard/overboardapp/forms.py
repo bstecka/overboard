@@ -44,14 +44,17 @@ class NewQuestionForm(forms.Form):
                                            pub_date=self.pub_date)
         question.save()
 
-        regex = re.compile('#*')
+        regex = re.compile('^#*')
         tagsList = [tag for tag in self.data['tags'].split() if regex.match(tag)]
         tagsNames = [re.sub('#', '', tag) for tag in tagsList]
 
         for tagName in tagsNames:
-            tag = Tag.objects.create(tag_name=tagName)
-            tag.questions.add(question)
-            tag.save()
+            if Tag.objects.filter(tag_name=tagName).exists():
+                Tag.objects.get(tag_name=tagName).questions.add(question)
+            else:
+                tag = Tag.objects.create(tag_name=tagName)
+                tag.questions.add(question)
+                tag.save()
 
         return
 
