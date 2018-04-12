@@ -132,8 +132,6 @@ def new_question(request):
 def search(request):
     if request.GET:
         phrase = request.GET.get("input_search_phrase")
-        #matching_text = r'^*' + phrase + r'*'
-        matching_text = phrase
-        questions = Question.objects.filter(Q(title=matching_text) | Q(content=matching_text))
+        questions = Question.objects.filter(Q(title__contains=phrase) | Q(content__contains=phrase))
         return render(request, 'search_question.html', {'questions': helper.default_questions_paginator(request, questions), 'phrase': phrase})
     return render(request, 'index')
