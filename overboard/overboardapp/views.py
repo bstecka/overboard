@@ -50,14 +50,13 @@ def new_answer(request, question_id):
     user = request.user
     if not user.is_authenticated:  # na reverse'ie??????
         return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
-    user_extended = UserExtended.objects.filter(user=user).first()
     if request.POST:
         answer_form = AnswerForm(request.POST)
         if answer_form.is_valid():
             current_date = datetime.datetime.now()
             answer_text = answer_form.cleaned_data['answer']
             answer = Answer.objects.create(
-                published_by=user_extended, content=answer_text, pub_date=current_date, question=question, accepted=0
+                published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
             )
             answer.save()
     return HttpResponseRedirect('/questions/' + question.id.__str__())
@@ -68,7 +67,6 @@ def question_vote(request, question_id):
     user = request.user
     if not user.is_authenticated:  # na reverse'ie??????
         return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
-    user_extended = UserExtended.objects.filter(user=user).first()
     if request.POST:
         vote_form = VoteForm(request.POST)
         if vote_form.is_valid():
@@ -77,17 +75,17 @@ def question_vote(request, question_id):
             found_opposite_vote = False
             found_vote = Vote.objects.first()
             for v in question.votes.all():
-                if v.voter == user_extended and v.value == value:
+                if v.voter == user and v.value == value:
                     found_duplicate_vote = True
                     found_vote = v
-                elif v.voter == user_extended:
+                elif v.voter == user:
                     found_opposite_vote = True
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
-            if not found_duplicate_vote and user_extended != question.asked_by:
+            if not found_duplicate_vote and user != question.asked_by:
                 current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=question)
+                vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
             return HttpResponseRedirect('/questions/' + question.id.__str__())
         else:
@@ -100,7 +98,6 @@ def answer_vote(request, question_id):
     user = request.user
     if not user.is_authenticated:  # na reverse'ie??????
         return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
-    user_extended = UserExtended.objects.filter(user=user).first()
     if request.POST:
         answer_vote_form = AnswerVoteForm(request.POST)
         if answer_vote_form.is_valid():
@@ -110,17 +107,17 @@ def answer_vote(request, question_id):
             found_opposite_vote = False
             found_vote = Vote.objects.first()
             for v in answer.votes.all():
-                if v.voter == user_extended and v.value == value:
+                if v.voter == user and v.value == value:
                     found_duplicate_vote = True
                     found_vote = v
-                elif v.voter == user_extended:
+                elif v.voter == user:
                     found_opposite_vote = True
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
-            if not found_duplicate_vote and user_extended != answer.published_by:
+            if not found_duplicate_vote and user != answer.published_by:
                 current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user_extended, vote_date=current_date, value=value, target=answer)
+                vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
             return HttpResponseRedirect('/questions/' + question.id.__str__())
     return HttpResponseRedirect('/questions/' + question.id.__str__())
@@ -131,7 +128,6 @@ def question_detail(request, question_id):
     vote_sum = question.votes.all().aggregate(Sum('value'))
     previous_vote = 0
     user = User.objects.filter(username=request.user.get_username()).first()
-    user_extended = UserExtended.objects.filter(user=user).first()
 
     answers = Answer.objects.filter(question=question)
     answer_votes = {'answer_id': 0}
@@ -139,11 +135,11 @@ def question_detail(request, question_id):
     for a in answers.all():
         answer_sums[a.id] = a.votes.aggregate(Sum('value'))
         for v in a.votes.all():
-            if v.voter == user_extended:
+            if v.voter == user:
                 answer_votes[a.id] = v.value
 
     for v in question.votes.all():
-        if v.voter == user_extended:
+        if v.voter == user:
             previous_vote = v.value
 
     return render(request, 'question_detail.html',
@@ -158,7 +154,7 @@ def tag_page(request, tag_id):
 
 
 def user_page(request, user_id):
-    otheruser = get_object_or_404(UserExtended, pk=user_id)
+    otheruser = get_object_or_404(User, pk=user_id)
     form = AnswerForm
     return render(request, 'user_page.html', {'otheruser': otheruser, 'form': form})
 
@@ -180,11 +176,11 @@ def register(request):
 
 def new_question(request):
     if request.POST:
-        form = NewQuestionForm(request.POST, user=UserExtended.objects.filter(user=request.user).first(), pub_date=datetime.datetime.now())
+        form = NewQuestionForm(request.POST, user=request.user, pub_date=datetime.datetime.now())
         form.save()
         return redirect('/users/' + request.user.id.__str__())
     else:
-        form = NewQuestionForm(user=UserExtended.objects.filter(user=request.user).first(), pub_date=datetime.datetime.now())
+        form = NewQuestionForm(user=request.user, pub_date=datetime.datetime.now())
     return render(request, 'new_question.html', {'form': form})
 
 

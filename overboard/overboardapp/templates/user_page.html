@@ -12,12 +12,12 @@
     </div>
     <div>
         <p>Username: </p>
-        <h1>{{otheruser.user.username }}</h1><br>
+        <h1>{{otheruser.username }}</h1><br>
         <p>Name: </p>
-        <h4>{{ otheruser.user.first_name }} {{ otheruser.user.last_name }}</h4><br>
+        <h4>{{ otheruser.first_name }} {{ otheruser.last_name }}</h4><br>
         {% if user.is_authenticated %}
         <p>Mail: </p>
-        <h4>{{ otheruser.user.email }}</h4><br>
+        <h4>{{ otheruser.email }}</h4><br>
         {% endif %}
         <hr>
     </div>
