@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from . import helper_functions as helper
+from django.db.models import Q
 import datetime
 
 
@@ -27,7 +29,6 @@ class HomePageView(TemplateView):
 class PageView(TemplateView):
     template_name = "page.html"
 
-
 def tag_list(request):
     tags = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
     return render(request, 'tags.html', {'tags': tags})
@@ -35,7 +36,7 @@ def tag_list(request):
 
 def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')[:10]
-    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
+    return render(request, 'index_content.html', {'questions': helper.default_questions_paginator(request, latest_questions), 'selected_tab': 'last'})
 
 
 def topweek_question_list(request):
@@ -153,7 +154,7 @@ def question_detail(request, question_id):
 def tag_page(request, tag_id):
     tag = get_object_or_404(Tag, pk=tag_id)
     questions = Question.objects.filter(tag=tag)
-    return render(request, 'tag_page.html', {'tag': tag, 'questions': questions})
+    return render(request, 'tag_page.html', {'tag': tag, 'questions': helper.default_questions_paginator(request, questions)})
 
 
 def user_page(request, user_id):
@@ -185,3 +186,11 @@ def new_question(request):
     else:
         form = NewQuestionForm(user=UserExtended.objects.filter(user=request.user).first(), pub_date=datetime.datetime.now())
     return render(request, 'new_question.html', {'form': form})
+
+
+def search(request):
+    if request.GET:
+        phrase = request.GET.get("input_search_phrase")
+        questions = Question.objects.filter(Q(title__contains=phrase) | Q(content__contains=phrase))
+        return render(request, 'search_question.html', {'questions': helper.default_questions_paginator(request, questions), 'phrase': phrase})
+    return render(request, 'index')

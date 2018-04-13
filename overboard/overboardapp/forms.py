@@ -54,9 +54,12 @@ class NewQuestionForm(forms.Form):
         tagsNames = [re.sub('#', '', tag) for tag in tagsList]
 
         for tagName in tagsNames:
-            tag = Tag.objects.create(tag_name=tagName)
-            tag.questions.add(question)
-            tag.save()
+            if Tag.objects.filter(tag_name=tagName).exists():
+                Tag.objects.get(tag_name=tagName).questions.add(question)
+            else:
+                tag = Tag.objects.create(tag_name=tagName)
+                tag.questions.add(question)
+                tag.save()
 
         return
 
