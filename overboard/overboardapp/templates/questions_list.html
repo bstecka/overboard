@@ -27,11 +27,6 @@
       <div class="col-md-10 panel post">
           <div class="panel-body click-for-more">
               Looking for more? Browse the <a href="#">complete list of questions</a>, or <a href="#">popular tags</a>. Help us answer unanswered questions.<br>
-              Haven't found question you're looking for?
-              {% if user.is_authenticated %}
-              <a href="{% url 'new_question' %}">Ask a question</a>!
-              {% else %}
-              <a href="{% url 'login' %}">Ask a question</a>!
-              {% endif %}
+              Haven't found question you're looking for?<a href="{% url 'new_question' %}">Ask a question</a>!
           </div>
       </div>

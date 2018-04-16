@@ -7,7 +7,7 @@
 
     <form action="{% url "new_question" %}" method="POST" class="login-container">
         {% csrf_token %}
-        <input id="user" type="hidden" name="user" value="{{user}}">
+        <input id="user_id" type="hidden" name="user_id" value="{{user.id}}">
         <div class="login-container">
             <div class="col-md-12 panel post">
             <div class="panel-heading">

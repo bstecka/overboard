@@ -11,6 +11,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from . import helper_functions as helper
 from django.db.models import Q
+from django.views import View
+from django.contrib.auth.decorators import login_required
 import datetime
 
 
@@ -174,19 +176,23 @@ def register(request):
     return render(request, 'registration/register_form.html', {'form': form})
 
 
-def new_question(request):
-    if request.POST:
-        form = NewQuestionForm(request.POST, user=request.user, pub_date=datetime.datetime.now())
-        form.save()
-        return redirect('/users/' + request.user.id.__str__())
-    else:
-        form = NewQuestionForm(user=request.user, pub_date=datetime.datetime.now())
-    return render(request, 'new_question.html', {'form': form})
-
-
 def search(request):
     if request.GET:
         phrase = request.GET.get("input_search_phrase")
         questions = Question.objects.filter(Q(title__contains=phrase) | Q(content__contains=phrase))
         return render(request, 'search_question.html', {'questions': helper.default_questions_paginator(request, questions), 'phrase': phrase})
     return render(request, 'index')
+
+
+class NewQuestionView(View):
+    form_class = NewQuestionForm
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        form.save()
+        return redirect('/users/' + request.user.id.__str__())
+
+    def get(self, request):
+        return render(request, 'new_question.html', {'form': self.form_class()})
+
+

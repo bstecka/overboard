@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Question, Tag
 import re
+import datetime
 
 
 class AnswerForm(forms.Form):
@@ -37,27 +38,22 @@ class NewQuestionForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     tags = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 2}), help_text='Tag should be one string of characters started with # sign. Separate tags with whitespace.')
 
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
-        self.pub_date = kwargs.pop('pub_date', None)
-        super(NewQuestionForm, self).__init__(*args, **kwargs)
-
     def save(self):
-        question = Question.objects.create(asked_by=self.user,
+        question = Question.objects.create(asked_by=User.objects.get(pk=self.data['user_id']),
                                            title=self.data['title'],
                                            content=self.data['content'],
-                                           pub_date=self.pub_date)
+                                           pub_date=datetime.datetime.now())
         question.save()
 
         regex = re.compile('^#*')
-        tagsList = [tag for tag in self.data['tags'].split() if regex.match(tag)]
-        tagsNames = [re.sub('#', '', tag) for tag in tagsList]
+        tags_list = [tag for tag in self.data['tags'].split() if regex.match(tag)]
+        tags_names = [re.sub('#', '', tag) for tag in tags_list]
 
-        for tagName in tagsNames:
-            if Tag.objects.filter(tag_name=tagName).exists():
-                Tag.objects.get(tag_name=tagName).questions.add(question)
+        for tag_name in tags_names:
+            if Tag.objects.filter(tag_name=tag_name).exists():
+                Tag.objects.get(tag_name=tag_name).questions.add(question)
             else:
-                tag = Tag.objects.create(tag_name=tagName)
+                tag = Tag.objects.create(tag_name=tag_name)
                 tag.questions.add(question)
                 tag.save()
 
