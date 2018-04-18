@@ -1,6 +1,4 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Question, Tag
@@ -36,7 +34,8 @@ class RegistrationForm(UserCreationForm):
 class NewQuestionForm(forms.Form):
     title = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
-    tags = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 2}), help_text='Tag should be one string of characters started with # sign. Separate tags with whitespace.')
+    tags = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 2}), required=False,
+                           help_text='Tag should be one string of characters started with # sign. Separate tags with whitespace.')
 
     def save(self):
         question = Question.objects.create(asked_by=User.objects.get(pk=self.data['user_id']),
@@ -45,7 +44,7 @@ class NewQuestionForm(forms.Form):
                                            pub_date=datetime.datetime.now())
         question.save()
 
-        regex = re.compile('^#*')
+        regex = re.compile(r'^#*')
         tags_list = [tag for tag in self.data['tags'].split() if regex.match(tag)]
         tags_names = [re.sub('#', '', tag) for tag in tags_list]
 
