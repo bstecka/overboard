@@ -49,7 +49,7 @@ def new_answer(request, question_id):
                 published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
             )
             answer.save()
-    return HttpResponseRedirect(reverse('questions', args=(question.id,)))
+    return HttpResponseRedirect(reverse('question_detail', args=(question.id,)))
 
 
 def question_vote(request, question_id):
