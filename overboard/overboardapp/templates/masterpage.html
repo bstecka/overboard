@@ -27,17 +27,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">OverBoard</a>
+      <a class="navbar-brand" href="{% url 'main:index' %}">OverBoard</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li {% if request.path == '/' %}class="active"{% endif %}><a href="/">Questions<span class="sr-only">(current)</span></a></li>
-        <li {% if request.path == '/tags/' %}class="active"{% endif %}><a href="/tags">Tags</a></li>
-        <li><a href="/">Users</a></li>
+        <li {% if request.path == '/' %}class="active"{% endif %}>
+            <a href="{% url 'main:questions' %}">Questions<span class="sr-only">(current)</span></a></li>
+        <li {% if request.path == '/tags/' %}class="active"{% endif %}>
+        <a href="{% url 'main:tag_list' %}">Tags</a></li>
+        <li><a href="{% url 'main:users' %}">Users</a></li>
       </ul>
-      <form class="navbar-form navbar-left" action="{% url 'search' %}" method="GET">
+      <form class="navbar-form navbar-left" action="{% url 'main:search' %}" method="GET">
           {% csrf_token %}
         <div class="form-group">
             <input type="text" class="form-control" id="input_search_phrase" name="input_search_phrase" placeholder="Search">
@@ -48,21 +50,23 @@
 
           {% if user.is_authenticated %}
          <li>
-             <a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon
+             <a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon
                     glyphicon-log-in"></span> Log out </a>
          </li>
          <li>
-             <a href="/users/{{ user.id }}"><span class="glyphicon
-                    glyphicon-user"></span> {{ user.get_username }} </a>
+             <a href="{% url 'main:user_page' user.id%}">
+                     <span class="glyphicon glyphicon-user"></span>
+                 {{ user.get_username }} </a>
          </li>
           {% else %}
          <li>
-             <a href="{% url 'login'%}?next={{request.path}}"><span class="glyphicon
-                    glyphicon-log-in"></span> Log in </a>
+             <a href="{% url 'login' %}?next={{request.path}}">
+                 <span class="glyphicon glyphicon-log-in"></span> Log in </a>
          </li>
          <li>
-             <a href="{% url 'register'%}"><span class="glyphicon
-                    glyphicon-user"></span> Register </a>
+             <a href="{% url 'main:register'%}">
+                 <span class="glyphicon glyphicon-user"></span>
+                 Register </a>
          </li>
           {% endif %}
 

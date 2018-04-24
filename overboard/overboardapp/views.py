@@ -1,55 +1,45 @@
  # overboardapp/views.py
-from django.shortcuts import get_object_or_404, render
-from django.views.generic import TemplateView
-from django.db.models import Count, Sum
-from django.contrib.auth.models import User
-from .models import Notification, Question, Tag, Vote, UserExtended, Answer
-from .forms import AnswerForm, VoteForm, AnswerVoteForm, RegistrationForm, NewQuestionForm
+from django.shortcuts import get_object_or_404, render, redirect, reverse
+from django.db.models import Count, Sum, Q
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from . import helper_functions as helper
-from django.db.models import Q
+from django.contrib.auth.models import User
+from django.views import View
+from .models import Question, Tag, Vote, Answer
+from .forms import AnswerForm, VoteForm, AnswerVoteForm, RegistrationForm, NewQuestionForm
 import datetime
+#from django.views.generic import TemplateView
+#from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth.decorators import login_required
 
-
-# Create your views here.
-class HomePageView(TemplateView):
-    template_name = "index.html"
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get the context
-        context = super(HomePageView, self).get_context_data(**kwargs)
-        # Create any data and add it to the context
-        context['notification_list'] = Notification.objects.all()
-        return context
-
-
-class PageView(TemplateView):
-    template_name = "page.html"
 
 def tag_list(request):
     tags = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
-    return render(request, 'tags.html', {'tags': tags})
+    return render(request, 'tag/tags.html', {'tags': tags})
 
 
 def latest_question_list(request):
-    latest_questions = Question.objects.all().order_by('-pub_date')[:10]
-    return render(request, 'index_content.html', {'questions': helper.default_questions_paginator(request, latest_questions), 'selected_tab': 'last'})
+    latest_questions = Question.objects.all().order_by('-pub_date')
+    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
 
 
-def topweek_question_list(request):
-    from_date = datetime.datetime.now() - datetime.timedelta(days=7)
-    latest_questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).order_by('-pub_date')[:10]
-    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'week'})
+def top_questions(delta_time):
+    from_date = datetime.datetime.now() - datetime.timedelta(days=delta_time)
+    questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).annotate(number_of_votes=Count('votes'))
+    return questions.order_by('-number_of_votes')
+
+
+def top_week_questions(request):
+    return render(request, 'index_content.html', {'questions': top_questions(7), 'selected_tab': 'week'})
+
+
+def top_month_questions(request):
+    return render(request, 'index_content.html', {'questions': top_questions(30), 'selected_tab': 'month'})
 
 
 def new_answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     user = request.user
-    if not user.is_authenticated:  # na reverse'ie??????
-        return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
     if request.POST:
         answer_form = AnswerForm(request.POST)
         if answer_form.is_valid():
@@ -59,14 +49,12 @@ def new_answer(request, question_id):
                 published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
             )
             answer.save()
-    return HttpResponseRedirect('/questions/' + question.id.__str__())
+    return HttpResponseRedirect(reverse('main:question_detail', args=(question.id,)))
 
 
 def question_vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     user = request.user
-    if not user.is_authenticated:  # na reverse'ie??????
-        return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
     if request.POST:
         vote_form = VoteForm(request.POST)
         if vote_form.is_valid():
@@ -87,17 +75,14 @@ def question_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
-            return HttpResponseRedirect('/questions/' + question.id.__str__())
         else:
             return HttpResponseRedirect('/404')
-    return HttpResponseRedirect('/questions/' + question.id.__str__())
+    return HttpResponseRedirect(reverse('main:question_detail', args=(question.id,)))
 
 
 def answer_vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     user = request.user
-    if not user.is_authenticated:  # na reverse'ie??????
-        return HttpResponseRedirect('/accounts/login/?next=/questions/' + question.id.__str__())
     if request.POST:
         answer_vote_form = AnswerVoteForm(request.POST)
         if answer_vote_form.is_valid():
@@ -119,8 +104,7 @@ def answer_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
-            return HttpResponseRedirect('/questions/' + question.id.__str__())
-    return HttpResponseRedirect('/questions/' + question.id.__str__())
+    return HttpResponseRedirect(reverse('main:question_detail', args=(question.id,)))
 
 
 def question_detail(request, question_id):
@@ -150,13 +134,13 @@ def question_detail(request, question_id):
 def tag_page(request, tag_id):
     tag = get_object_or_404(Tag, pk=tag_id)
     questions = Question.objects.filter(tag=tag)
-    return render(request, 'tag_page.html', {'tag': tag, 'questions': helper.default_questions_paginator(request, questions)})
+    return render(request, 'tag/tag_page.html', {'tag': tag, 'questions': questions})
 
 
 def user_page(request, user_id):
-    otheruser = get_object_or_404(User, pk=user_id)
+    other_user = get_object_or_404(User, pk=user_id)
     form = AnswerForm
-    return render(request, 'user_page.html', {'otheruser': otheruser, 'form': form})
+    return render(request, 'user_page.html', {'otheruser': other_user, 'form': form})
 
 
 def register(request):
@@ -168,25 +152,29 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/index/')
+            return redirect(reverse('main:index'))
     else:
         form = RegistrationForm()
     return render(request, 'registration/register_form.html', {'form': form})
-
-
-def new_question(request):
-    if request.POST:
-        form = NewQuestionForm(request.POST, user=request.user, pub_date=datetime.datetime.now())
-        form.save()
-        return redirect('/users/' + request.user.id.__str__())
-    else:
-        form = NewQuestionForm(user=request.user, pub_date=datetime.datetime.now())
-    return render(request, 'new_question.html', {'form': form})
 
 
 def search(request):
     if request.GET:
         phrase = request.GET.get("input_search_phrase")
         questions = Question.objects.filter(Q(title__contains=phrase) | Q(content__contains=phrase))
-        return render(request, 'search_question.html', {'questions': helper.default_questions_paginator(request, questions), 'phrase': phrase})
+        return render(request, 'search_question.html', {'questions': questions, 'phrase': phrase})
     return render(request, 'index')
+
+
+class NewQuestionView(View):
+    form_class = NewQuestionForm
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        form.save()
+        return HttpResponseRedirect(reverse('main:user_page', args=(request.user.id,)))
+
+    def get(self, request):
+        return render(request, 'new_question.html', {'form': self.form_class()})
+
+

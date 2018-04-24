@@ -4,7 +4,7 @@
         <div class="col-md-1 col-xs-1">
             <div class="vote-area">
                 <div class="item move-left">
-                    <form action="/answer_vote/{{question.id}}/" method="post">
+                    <form action="{% url 'main:answer_vote' question.id %}" method="post">
                         {% csrf_token %}
                         <input id="target" type="hidden" name="target" value="{{answer.id}}">
                         <input id="answer" type="hidden" name="answer" value="true">
@@ -21,7 +21,7 @@
                     {% if sum.value__sum %}{{sum.value__sum}}{% else %}0{% endif %}
                 </div></div>
                 <div class="item move-right top-buffer">
-                    <form action="/answer_vote/{{question.id}}/" method="post">
+                    <form action="{% url 'main:answer_vote' question.id %}" method="post">
                         {% csrf_token %}
                         <input id="target2" type="hidden" name="target" value="{{answer.id}}">
                         <input id="vote2" type="hidden" name="vote" value="-1">
@@ -41,7 +41,7 @@
             </div>
             <div class="panel-body panel-body-right">
                 answered {{ answer.get_time_diff }} sec ago by
-                <a href="/users/{{ answer.published_by.id }}/">{{ answer.published_by }}</a>
+                <a href="{% url 'main:user_page' answer.published_by.id %}">{{ answer.published_by }}</a>
             </div>
         </div>
     </div>

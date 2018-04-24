@@ -16,7 +16,7 @@
     {% for tag in tags %}
         {% if forloop.first or forloop.counter0|divisibleby:6 %}<div class="row">{% endif %}
         <div class="col-md-2 text-center">
-	        <a href="/tags/{{ tag.id }}">
+	        <a href="{% url 'tag_page' tag.id %}">
 	        <div class="stats-box border-1 pad-20">
 	        <h3>{{ tag.tag_name }}</h3>
 	        <h5>{{ tag.questions.count }} question{% if tag.questions.count != 1 %}s{% endif %}</h5>

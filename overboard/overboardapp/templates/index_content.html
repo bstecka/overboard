@@ -6,9 +6,12 @@
 <div class="panel">
     <div class="panel-heading">
       <ul class="nav nav-tabs">
-        <li role="presentation" {% if selected_tab == 'last' %}class="active"{% endif %}><a href={% url 'latest_question_list' %}>Last questions</a></li>
-        <li role="presentation" {% if selected_tab == 'week' %}class="active"{% endif %}><a href={% url 'topweek_question_list' %}>Top week</a></li>
-        <li role="presentation" {% if selected_tab == 'month' %}class="active"{% endif %}><a href={% url 'topweek_question_list' %}>Top month</a></li>
+        <li role="presentation" {% if selected_tab == 'last' %}class="active"{% endif %}>
+            <a href={% url 'main:latest_question_list' %}>Last questions</a></li>
+        <li role="presentation" {% if selected_tab == 'week' %}class="active"{% endif %}>
+            <a href={% url 'main:top_week_questions' %}>Top week</a></li>
+        <li role="presentation" {% if selected_tab == 'month' %}class="active"{% endif %}>
+            <a href={% url 'main:top_month_questions' %}>Top month</a></li>
 
       </ul>
 
