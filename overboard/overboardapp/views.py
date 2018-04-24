@@ -49,7 +49,7 @@ def new_answer(request, question_id):
                 published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
             )
             answer.save()
-    return HttpResponseRedirect(reverse('questions', args=(question.id,)))
+    return HttpResponseRedirect(reverse('main:question_detail', args=(question.id,)))
 
 
 def question_vote(request, question_id):
@@ -77,7 +77,7 @@ def question_vote(request, question_id):
                 vote.save()
         else:
             return HttpResponseRedirect('/404')
-    return HttpResponseRedirect(reverse('question_detail', args=(question.id,)))
+    return HttpResponseRedirect(reverse('main:question_detail', args=(question.id,)))
 
 
 def answer_vote(request, question_id):
@@ -104,7 +104,7 @@ def answer_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
-    return HttpResponseRedirect(reverse('question_detail', args=(question.id,)))
+    return HttpResponseRedirect(reverse('main:question_detail', args=(question.id,)))
 
 
 def question_detail(request, question_id):
@@ -152,7 +152,7 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect(reverse('index'))
+            return redirect(reverse('main:index'))
     else:
         form = RegistrationForm()
     return render(request, 'registration/register_form.html', {'form': form})
@@ -172,7 +172,7 @@ class NewQuestionView(View):
     def post(self, request):
         form = self.form_class(request.POST)
         form.save()
-        return HttpResponseRedirect(reverse('user_page', args=(request.user.id,)))
+        return HttpResponseRedirect(reverse('main:user_page', args=(request.user.id,)))
 
     def get(self, request):
         return render(request, 'new_question.html', {'form': self.form_class()})

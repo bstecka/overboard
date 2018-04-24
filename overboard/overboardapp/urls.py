@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import path
 from . import views
 
+app_name = 'main'
 urlpatterns = [
     path('', views.latest_question_list, name='index'),
     path('index/', views.latest_question_list, name='latest_question_list'),
