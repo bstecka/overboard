@@ -37,7 +37,7 @@
             <a href="{% url 'core:questions' %}">Questions<span class="sr-only">(current)</span></a></li>
         <li {% if request.path == '/tags/' %}class="active"{% endif %}>
         <a href="{% url 'tags:tag_list' %}">Tags</a></li>
-        <li><a href="{% url 'core:users' %}">Users</a></li>
+        <li><a href="{% url 'users:users' %}">Users</a></li>
       </ul>
       <form class="navbar-form navbar-left" action="{% url 'core:search' %}" method="GET">
           {% csrf_token %}
@@ -54,7 +54,7 @@
                     glyphicon-log-in"></span> Log out </a>
          </li>
          <li>
-             <a href="{% url 'core:user_page' user.id%}">
+             <a href="{% url 'users:user_page' user.id%}">
                      <span class="glyphicon glyphicon-user"></span>
                  {{ user.get_username }} </a>
          </li>
@@ -64,7 +64,7 @@
                  <span class="glyphicon glyphicon-log-in"></span> Log in </a>
          </li>
          <li>
-             <a href="{% url 'core:register'%}">
+             <a href="{% url 'users:register'%}">
                  <span class="glyphicon glyphicon-user"></span>
                  Register </a>
          </li>

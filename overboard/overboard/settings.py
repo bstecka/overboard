@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'pagination_bootstrap',
     'tags',
+    'apps.users'
 ]
 
 MIDDLEWARE = [

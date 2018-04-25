@@ -18,9 +18,9 @@ urlpatterns = [
     path('answer_vote/<int:question_id>/', login_required(views.answer_vote), name='answer_vote'),
     path('question_vote/<int:question_id>/', login_required(views.question_vote), name='question_vote'),
 
-    path('users/', views.latest_question_list, name='users'),
-    path('users/<int:user_id>/', views.user_page, name='user_page'),
-    path('register/', views.register, name='register'),
+    # path('users/', views.latest_question_list, name='users'),
+    # path('users/<int:user_id>/', views.user_page, name='user_page'),
+    # path('register/', views.register, name='register'),
 
     # path('tags/', views.tag_list, name='tag_list'),
     # path('tags/<int:tag_id>/', views.tag_page, name='tag_page'),

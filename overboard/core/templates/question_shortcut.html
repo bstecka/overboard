@@ -24,7 +24,7 @@
             </div>
             <div class="panel-footer">
                 asked on {{ question.pub_date }} by
-                <a href="{% url 'core:user_page' question.asked_by.id %}">{{ question.asked_by }}</a></div>
+                <a href="{% url 'users:user_page' question.asked_by.id %}">{{ question.asked_by }}</a></div>
 
         </div>
     </div>

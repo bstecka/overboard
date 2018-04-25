@@ -172,7 +172,7 @@ class NewQuestionView(View):
     def post(self, request):
         form = self.form_class(request.POST)
         form.save()
-        return HttpResponseRedirect(reverse('core:user_page', args=(request.user.id,)))
+        return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
 
     def get(self, request):
         return render(request, 'new_question.html', {'form': self.form_class()})
