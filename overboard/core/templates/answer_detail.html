@@ -1,0 +1,48 @@
+{% load template_filters %}
+<div class="panel-body">
+    <div class="post-row">
+        <div class="col-md-1 col-xs-1">
+            <div class="vote-area">
+                <div class="item move-left">
+                    <form action="{% url 'core:answer_vote' question.id %}" method="post">
+                        {% csrf_token %}
+                        <input id="target" type="hidden" name="target" value="{{answer.id}}">
+                        <input id="answer" type="hidden" name="answer" value="true">
+                        <input id="vote" type="hidden" name="vote" value="1">
+                        <button class="unstyled" type="submit">
+                        <i id="upvote"
+                           class="{% if vote == 1 %}icon-success{% endif %} glyphicon glyphicon-chevron-up"
+                         >
+                        </i>
+                        </button>
+                    </form>
+                </div>
+                <div class="item top-buffer"><div class="label label-primary">
+                    {% if sum.value__sum %}{{sum.value__sum}}{% else %}0{% endif %}
+                </div></div>
+                <div class="item move-right top-buffer">
+                    <form action="{% url 'core:answer_vote' question.id %}" method="post">
+                        {% csrf_token %}
+                        <input id="target2" type="hidden" name="target" value="{{answer.id}}">
+                        <input id="vote2" type="hidden" name="vote" value="-1">
+                        <input id="answer2" type="hidden" name="answer" value="true">
+                        <button class="unstyled" type="submit">
+                        <i id="downvote"
+                           class="{% if vote == -1 %}icon-success{% endif %} glyphicon glyphicon-chevron-down"
+                        ></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11 panel post">
+            <div class="panel-heading">
+                {{ answer.content }}
+            </div>
+            <div class="panel-body panel-body-right">
+                answered {{ answer.get_time_diff }} sec ago by
+                <a href="{% url 'core:user_page' answer.published_by.id %}">{{ answer.published_by }}</a>
+            </div>
+        </div>
+    </div>
+</div>
