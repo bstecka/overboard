@@ -10,6 +10,7 @@ from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm#, Regis
 import datetime
 # Create your views here.
 
+
 def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')
     return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
@@ -41,7 +42,7 @@ def new_answer(request, question_id):
                 published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
             )
             answer.save()
-    return HttpResponseRedirect(reverse('posts:question_detail', args=(question.id,)))
+    return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
 def question_vote(request, question_id):
@@ -69,7 +70,7 @@ def question_vote(request, question_id):
                 vote.save()
         else:
             return HttpResponseRedirect('/404')
-    return HttpResponseRedirect(reverse('posts:question_detail', args=(question.id,)))
+    return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
 def answer_vote(request, question_id):
@@ -96,10 +97,10 @@ def answer_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
-    return HttpResponseRedirect(reverse('posts:question_detail', args=(question.id,)))
+    return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
-def question_detail(request, question_id):
+def question_page(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     vote_sum = question.votes.all().aggregate(Sum('value'))
     previous_vote = 0

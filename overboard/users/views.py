@@ -4,16 +4,18 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.views import View
-from .models import Question, Tag, Vote, Answer
-from .forms import RegistrationForm, AnswerForm
 from django.contrib.auth import login, authenticate
 import datetime
+
+from .models import Question, Tag, Vote, Answer
+from .forms import RegistrationForm, AnswerForm
 
 # Create your views here.
 
 def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')
     return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
+
 
 def user_page(request, user_id):
     other_user = get_object_or_404(User, pk=user_id)

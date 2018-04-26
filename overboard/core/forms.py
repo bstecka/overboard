@@ -21,25 +21,6 @@ class AnswerVoteForm(forms.Form):
     answer = forms.CharField(label='answer', max_length=100)
 
 
-# class RegistrationForm(UserCreationForm):
-#     username = forms.CharField(max_length=30, required=True, help_text='Required.',
-#                                widget=forms.TextInput(attrs={'class': 'form-control'}))
-#     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.',
-#                                  widget=forms.TextInput(attrs={'class': 'form-control'}))
-#     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.',
-#                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
-#     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.',
-#                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-#     password1 = forms.CharField(max_length=30, required=True, help_text='Required.', label="Password",
-#                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-#     password2 = forms.CharField(max_length=30, required=True, help_text='Required. Must be the same as .',
-#                                 label="Confirm password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-#
-#     class Meta:
-#         model = User
-#         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
-
-
 class NewQuestionForm(forms.Form):
     title = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
