@@ -5,7 +5,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.views import View
-from .models import Question, Tag, Vote, Answer
+from .models import Question, Vote, Answer
+from tags.models import Tag
 from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm#, RegistrationForm
 import datetime
 # Create your views here.

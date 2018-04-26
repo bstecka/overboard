@@ -1,13 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Question, Tag
-import re
+from tags.models import Tag
+from posts.models import Question
 import datetime
-
-
-class AnswerForm(forms.Form):
-    answer = forms.CharField(label='answer')
 
 
 class RegistrationForm(UserCreationForm):

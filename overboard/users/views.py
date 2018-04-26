@@ -7,10 +7,13 @@ from django.views import View
 from django.contrib.auth import login, authenticate
 import datetime
 
-from .models import Question, Tag, Vote, Answer
-from .forms import RegistrationForm, AnswerForm
+from posts.models import Question, Vote, Answer
+from tags.models import Tag
+from .forms import RegistrationForm
+from posts.forms import AnswerForm
 
 # Create your views here.
+
 
 def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')

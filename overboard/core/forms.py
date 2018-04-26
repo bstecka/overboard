@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Question, Tag
+from posts.models import Question
+from tags.models import Tag
 import re
 import datetime
 
