@@ -17,8 +17,8 @@ def latest_question_list(request):
 
 def user_page(request, user_id):
     other_user = get_object_or_404(User, pk=user_id)
-    # form = AnswerForm
-    return render(request, 'user_page.html', {'otheruser': other_user})   #, 'form': form})
+    form = AnswerForm
+    return render(request, 'user_page.html', {'otheruser': other_user, 'form': form })
 
 
 def register(request):

@@ -6,16 +6,16 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.views import View
 from .models import Question, Tag, Vote, Answer
-from .forms import AnswerForm, VoteForm, AnswerVoteForm, RegistrationForm, NewQuestionForm
+from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm#, RegistrationForm
 import datetime
 #from django.views.generic import TemplateView
 #from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.decorators import login_required
 
 
-def tag_list(request):
-    tags = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
-    return render(request, 'tag/tags_list.html', {'tags': tags})
+# def tag_list(request):
+#     tags = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
+#     return render(request, 'tag/tags_list.html', {'tags': tags})
 
 
 def latest_question_list(request):
@@ -80,82 +80,82 @@ def question_vote(request, question_id):
     return HttpResponseRedirect(reverse('core:question_detail', args=(question.id,)))
 
 
-def answer_vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    user = request.user
-    if request.POST:
-        answer_vote_form = AnswerVoteForm(request.POST)
-        if answer_vote_form.is_valid():
-            value = answer_vote_form.cleaned_data['vote']
-            answer = Answer.objects.filter(id=answer_vote_form.cleaned_data['target']).first()
-            found_duplicate_vote = False
-            found_opposite_vote = False
-            found_vote = Vote.objects.first()
-            for v in answer.votes.all():
-                if v.voter == user and v.value == value:
-                    found_duplicate_vote = True
-                    found_vote = v
-                elif v.voter == user:
-                    found_opposite_vote = True
-                    found_vote = v
-            if found_duplicate_vote or found_opposite_vote:
-                found_vote.delete()
-            if not found_duplicate_vote and user != answer.published_by:
-                current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
-                vote.save()
-    return HttpResponseRedirect(reverse('core:question_detail', args=(question.id,)))
+# def answer_vote(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     user = request.user
+#     if request.POST:
+#         answer_vote_form = AnswerVoteForm(request.POST)
+#         if answer_vote_form.is_valid():
+#             value = answer_vote_form.cleaned_data['vote']
+#             answer = Answer.objects.filter(id=answer_vote_form.cleaned_data['target']).first()
+#             found_duplicate_vote = False
+#             found_opposite_vote = False
+#             found_vote = Vote.objects.first()
+#             for v in answer.votes.all():
+#                 if v.voter == user and v.value == value:
+#                     found_duplicate_vote = True
+#                     found_vote = v
+#                 elif v.voter == user:
+#                     found_opposite_vote = True
+#                     found_vote = v
+#             if found_duplicate_vote or found_opposite_vote:
+#                 found_vote.delete()
+#             if not found_duplicate_vote and user != answer.published_by:
+#                 current_date = datetime.datetime.now()
+#                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
+#                 vote.save()
+#     return HttpResponseRedirect(reverse('posts:question_detail', args=(question.id,)))
 
 
-def question_detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    vote_sum = question.votes.all().aggregate(Sum('value'))
-    previous_vote = 0
-    user = User.objects.filter(username=request.user.get_username()).first()
-
-    answers = Answer.objects.filter(question=question)
-    answer_votes = {'answer_id': 0}
-    answer_sums = {'answer_id': 0}
-    for a in answers.all():
-        answer_sums[a.id] = a.votes.aggregate(Sum('value'))
-        for v in a.votes.all():
-            if v.voter == user:
-                answer_votes[a.id] = v.value
-
-    for v in question.votes.all():
-        if v.voter == user:
-            previous_vote = v.value
-
-    return render(request, 'question_page.html',
-                  {'question': question, 'answersums': answer_sums, 'answervotes': answer_votes,
-                   'vote_sum': vote_sum, 'previous_vote': previous_vote})
-
-
-def tag_page(request, tag_id):
-    tag = get_object_or_404(Tag, pk=tag_id)
-    questions = Question.objects.filter(tag=tag)
-    return render(request, 'tag/tag_page.html', {'tag': tag, 'questions': questions})
+# def question_detail(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     vote_sum = question.votes.all().aggregate(Sum('value'))
+#     previous_vote = 0
+#     user = User.objects.filter(username=request.user.get_username()).first()
+#
+#     answers = Answer.objects.filter(question=question)
+#     answer_votes = {'answer_id': 0}
+#     answer_sums = {'answer_id': 0}
+#     for a in answers.all():
+#         answer_sums[a.id] = a.votes.aggregate(Sum('value'))
+#         for v in a.votes.all():
+#             if v.voter == user:
+#                 answer_votes[a.id] = v.value
+#
+#     for v in question.votes.all():
+#         if v.voter == user:
+#             previous_vote = v.value
+#
+#     return render(request, 'question_page.html',
+#                   {'question': question, 'answersums': answer_sums, 'answervotes': answer_votes,
+#                    'vote_sum': vote_sum, 'previous_vote': previous_vote})
 
 
-def user_page(request, user_id):
-    other_user = get_object_or_404(User, pk=user_id)
-    form = AnswerForm
-    return render(request, 'user_page.html', {'otheruser': other_user, 'form': form})
+# def tag_page(request, tag_id):
+#     tag = get_object_or_404(Tag, pk=tag_id)
+#     questions = Question.objects.filter(tag=tag)
+#     return render(request, 'tag/tag_page.html', {'tag': tag, 'questions': questions})
 
 
-def register(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect(reverse('core:index'))
-    else:
-        form = RegistrationForm()
-    return render(request, 'registration/register_form.html', {'form': form})
+# def user_page(request, user_id):
+#     other_user = get_object_or_404(User, pk=user_id)
+#     form = AnswerForm
+#     return render(request, 'user_page.html', {'otheruser': other_user, 'form': form})
+
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = RegistrationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=raw_password)
+#             login(request, user)
+#             return redirect(reverse('core:index'))
+#     else:
+#         form = RegistrationForm()
+#     return render(request, 'registration/register_form.html', {'form': form})
 
 
 def search(request):
@@ -166,15 +166,15 @@ def search(request):
     return render(request, 'index')
 
 
-class NewQuestionView(View):
-    form_class = NewQuestionForm
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-        form.save()
-        return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
-
-    def get(self, request):
-        return render(request, 'new_question.html', {'form': self.form_class()})
+# class NewQuestionView(View):
+#     form_class = NewQuestionForm
+#
+#     def post(self, request):
+#         form = self.form_class(request.POST)
+#         form.save()
+#         return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
+#
+#     def get(self, request):
+#         return render(request, 'new_question.html', {'form': self.form_class()})
 
 
