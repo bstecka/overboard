@@ -3,9 +3,10 @@ from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.db.models import Count, Sum, Q
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
-from django.views.generic import ListView, DetailView
 from django.contrib.auth.models import User
+from django.contrib.postgres.search import SearchVector
 from django.views import View
+from django.views.generic import ListView, DetailView
 from posts.models import Question, Answer, Vote
 from users.models import UserExtended
 from tags.models import Tag
@@ -60,7 +61,7 @@ def top_month_questions(request):
 def search(request):
     if request.GET:
         phrase = request.GET.get("input_search_phrase")
-        questions = Question.objects.filter(Q(title__contains=phrase) | Q(content__contains=phrase))
+        questions = Question.objects.annotate(search=SearchVector('title', 'content')).filter(search=phrase)
         return render(request, 'search_question.html', {'questions': questions, 'phrase': phrase})
     return render(request, 'index')
 
