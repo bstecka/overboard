@@ -5,6 +5,6 @@ from . import views
 
 app_name = 'tags'
 urlpatterns = [
-    path('', views.tag_list, name='tag_list'),
-    path('<int:tag_id>/', views.tag_page, name='tag_page'),
+    path('', views.TagList.as_view(), name='tag_list'),
+    path('<int:pk>', views.TagDetailView.as_view(), name='tag_page'),
 ]

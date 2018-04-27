@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.views import View
+from django.views.generic import ListView
 from django.contrib.auth import login, authenticate
 import datetime
 
@@ -15,9 +16,19 @@ from posts.forms import AnswerForm
 # Create your views here.
 
 
-def latest_question_list(request):
-    latest_questions = Question.objects.all().order_by('-pub_date')
-    return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
+class QuestionList(ListView):
+    model = Question
+    context_object_name = 'questions'
+    selected_tab = ''
+    template_name = 'index_content.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionList, self).get_context_data(**kwargs)
+        context['selected_tab'] = self.selected_tab
+        return context
+
+    def get_queryset(self):
+        return Question.objects.all().order_by('-pub_date')
 
 
 def user_page(request, user_id):

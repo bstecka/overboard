@@ -33,7 +33,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li {% if request.path == '/' %}class="active"{% endif %}>
+        <li {% if request.path == '/' or request.path == '/questions/' %}class="active"{% endif %}>
             <a href="{% url 'posts:questions' %}">Questions<span class="sr-only">(current)</span></a></li>
         <li {% if request.path == '/tags/' %}class="active"{% endif %}>
         <a href="{% url 'tags:tag_list' %}">Tags</a></li>

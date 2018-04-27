@@ -6,8 +6,8 @@ from . import views
 
 app_name = 'posts'
 urlpatterns = [
-    path('', views.latest_question_list, name='questions'),
-    path('<int:question_id>/', views.question_page, name='question_page'),
+    path('', views.QuestionList.as_view(selected_tab='last'), name='questions'),
+    path('<int:question_id>/', views.question_detail, name='question_page'),
     path('new_question/', login_required(views.NewQuestionView.as_view()), name='new_question'),
     path('new_answer/<int:question_id>/', login_required(views.new_answer), name='new_answer'),
     path('answer_vote/<int:question_id>/', login_required(views.answer_vote), name='answer_vote'),

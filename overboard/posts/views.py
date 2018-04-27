@@ -2,17 +2,43 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.db.models import Count, Sum, Q
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 from django.views import View
 from .models import Question, Vote, Answer
 from tags.models import Tag
-from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm#, RegistrationForm
+from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
 import datetime
 # Create your views here.
 
 
-def latest_question_list(request):
+class QuestionList(ListView):
+    model = Question
+    context_object_name = 'questions'
+    selected_tab = ''
+    template_name = 'index_content.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionList, self).get_context_data(**kwargs)
+        context['selected_tab'] = self.selected_tab
+        return context
+
+    def get_queryset(self):
+        return Question.objects.all().order_by('-pub_date')
+
+
+class TopQuestionList(QuestionList):
+    delta_time = 0
+
+    def get_queryset(self):
+        from_date = datetime.datetime.now() - datetime.timedelta(days=self.delta_time)
+        questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).annotate(
+            number_of_votes=Count('votes'))
+        return questions.order_by('-number_of_votes')
+
+
+'''def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')
     return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
 
@@ -24,11 +50,33 @@ def top_questions(delta_time):
 
 
 def top_week_questions(request):
-    return render(request, 'index_content.html', {'questions': top_questions(7), 'selected_tab': 'week'})
+    return render(request, 'index_content.html', {'questions': TopQuestionList().get_queryset(), 'selected_tab': 'week'})
 
 
 def top_month_questions(request):
-    return render(request, 'index_content.html', {'questions': top_questions(30), 'selected_tab': 'month'})
+    return render(request, 'index_content.html', {'questions': TopQuestionList().get_queryset(), 'selected_tab': 'month'})'''
+
+
+class NewQuestionView(View):
+    form_class = NewQuestionForm
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        form.save()
+        return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
+
+    def get(self, request):
+        return render(request, 'new_question.html', {'form': self.form_class()})
+
+
+class QuestionCreateView(CreateView):
+    model = Question
+    fields = ['title', 'content']
+    template_name = 'new_question.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(QuestionCreateView, self).form_valid(form)
 
 
 def new_answer(request, question_id):
@@ -101,7 +149,7 @@ def answer_vote(request, question_id):
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
-def question_page(request, question_id):
+def question_detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     vote_sum = question.votes.all().aggregate(Sum('value'))
     previous_vote = 0
@@ -123,15 +171,3 @@ def question_page(request, question_id):
     return render(request, 'question_page.html',
                   {'question': question, 'answersums': answer_sums, 'answervotes': answer_votes,
                    'vote_sum': vote_sum, 'previous_vote': previous_vote})
-
-
-class NewQuestionView(View):
-    form_class = NewQuestionForm
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-        form.save()
-        return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
-
-    def get(self, request):
-        return render(request, 'new_question.html', {'form': self.form_class()})

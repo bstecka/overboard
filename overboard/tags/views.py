@@ -4,18 +4,25 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.db.models import Count, Sum, Q
 from django.views import View
+from django.views.generic import ListView, DetailView
 from .models import Question, Tag, Vote, Answer
 import datetime
 
-# Create your views here.
+
+class TagList(ListView):
+    model = Tag
+    context_object_name = 'tags'
+    template_name = 'tags_list.html'
+    queryset = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
 
 
-def tag_list(request):
-    tags = Tag.objects.all().annotate(num_questions=Count('questions')).order_by('-num_questions')
-    return render(request, 'tags_list.html', {'tags': tags})
+class TagDetailView(DetailView):
+    model = Tag
+    context_object_name = 'tag'
+    template_name = 'tag_page.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(TagDetailView, self).get_context_data(**kwargs)
+        context['questions'] = Question.objects.filter(tag=self.get_object())
+        return context
 
-def tag_page(request, tag_id):
-    tag = get_object_or_404(Tag, pk=tag_id)
-    questions = Question.objects.filter(tag=tag)
-    return render(request, 'tag_page.html', {'tag': tag, 'questions': questions})
