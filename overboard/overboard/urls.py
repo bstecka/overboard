@@ -20,5 +20,9 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    url(r'^', include('overboardapp.urls')),
+    path('tags/', include('tags.urls')),
+    path('users/', include('users.urls')),
+    path('', include('core.urls')),
+    #path('index/', include('core.urls')),
+    path('questions/', include('posts.urls')),
 ]

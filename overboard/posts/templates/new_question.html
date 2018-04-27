@@ -1,0 +1,25 @@
+{% extends 'masterpage.html' %}
+
+{% block title %}New question{% endblock %}
+
+{% block content %}
+
+
+    <form action="{% url "posts:new_question" %}" method="POST" class="login-container">
+        {% csrf_token %}
+        <input id="user_id" type="hidden" name="user_id" value="{{user.id}}">
+        <div class="login-container">
+            <div class="col-md-12 panel post">
+            <div class="panel-heading">
+                {{ form }}
+            </div><br>
+            <div class="panel-footer">
+                asked on {% now "jS F Y H:i" %} by {{ user }}</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn btn-primary" value="Submit">
+          Send
+        </button>
+    </form>
+
+{% endblock %}

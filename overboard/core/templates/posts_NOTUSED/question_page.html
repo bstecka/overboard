@@ -1,0 +1,83 @@
+{#{% extends 'masterpage.html' %}#}
+{##}
+{#{% block title %}#}
+{#    {{question.title}}#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<div>#}
+{#    <div>#}
+{#        <h1 class="header_answer h1">{{ question.title }}</h1>#}
+{#        <hr>#}
+{#    </div>#}
+{##}
+{#    <div class="container">#}
+{#        <div class="panel-group">#}
+{#            <div class="panel-body">#}
+{#                <div class="post-row">#}
+{#                    <div class="col-md-1 col-xs-1">#}
+{#                        <div class="vote-area">#}
+{#                            <div class="item move-left">#}
+{#                                <form action="{% url "posts:question_vote" question.id %}" method="POST">#}
+{#                                    {% csrf_token %}#}
+{#                                    <input id="target" type="hidden" name="target" value="{{question.id}}">#}
+{#                                    <input id="vote" type="hidden" name="vote" value="1">#}
+{#                                    <button class="unstyled" type="submit">#}
+{#                                    <i id="upvote"#}
+{#                                       class="{% if previous_vote == 1 %}icon-success{% endif %} glyphicon glyphicon-chevron-up"#}
+{#                                     >#}
+{#                                    </i>#}
+{#                                    </button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                            <div class="item top-buffer"><div class="label label-primary">#}
+{#                                {% if vote_sum.value__sum %}{{vote_sum.value__sum}}{% else %}0{% endif %}#}
+{#                            </div></div>#}
+{#                            <div class="item move-right top-buffer">#}
+{#                                <form action="{% url "posts:question_vote" question.id %}" method="POST">#}
+{#                                    {% csrf_token %}#}
+{#                                    <input id="target2" type="hidden" name="target" value="{{question.id}}">#}
+{#                                    <input id="vote2" type="hidden" name="vote" value="-1">#}
+{#                                    <button class="unstyled" type="submit">#}
+{#                                    <i id="downvote"#}
+{#                                       class="{% if previous_vote == -1 %}icon-success{% endif %} glyphicon glyphicon-chevron-down"#}
+{#                                    ></i>#}
+{#                                    </button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-11 panel post">#}
+{#                        <div class="panel-heading">#}
+{#                            {{ question.content }}#}
+{#                        </div>#}
+{#                        <div class="panel-body panel-body-right">#}
+{#                            asked {{ question.get_time_diff }} sec ago by#}
+{#                            <a href="{% url 'users:user_page' question.asked_by.id %}">{{ question.asked_by }}</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <h4 class="header_answer h4">Answers</h4>#}
+{##}
+{#        <div class="panel-group">#}
+{#            {% for answer in question.answer_set.all %}#}
+{#                {% include 'answer_detail.html' with user=user sum=answersums|get_item:answer.id vote=answervotes|get_item:answer.id %}#}
+{#            {% endfor %}#}
+{#        </div>#}
+{##}
+{#    {% if user.is_authenticated %}#}
+{#        {% include "answer_form.html" with question_id=question.id user=user %}#}
+{#    {% else %}#}
+{#        <div class="col-md-10 panel post">#}
+{#          <div class="panel-body click-for-more">#}
+{#              Znasz odpowiedź na to pytanie? <a href="{% url "login" %}">Zaloguj się</a>, aby móc jej udzielić!#}
+{#          </div>#}
+{#      </div>#}
+{#    {% endif %}#}
+{#    </div>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}

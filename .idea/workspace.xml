@@ -2,18 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46068b07-75c4-40d6-8584-19832856a23c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/answer_detail.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/answer_detail.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/answer_form.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/answer_form.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/masterpage.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/masterpage.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/new_question.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/new_question.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/question_detail.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/question_detail.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/question_shortcut.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/question_shortcut.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/questions_list.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/questions_list.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/registration/login.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/registration/login.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/templates/user_page.html" afterPath="$PROJECT_DIR$/overboard/overboardapp/templates/user_page.html" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/urls.py" afterPath="$PROJECT_DIR$/overboard/overboardapp/urls.py" />
-      <change beforePath="$PROJECT_DIR$/overboard/overboardapp/views.py" afterPath="$PROJECT_DIR$/overboard/overboardapp/views.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/answer_detail_old.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/answer_form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/question_page.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/question_shortcut_old.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/questions_list_old.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/tags/templates/question_shortcut.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overboard/tags/templates/questions_list.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/forms.py" afterPath="$PROJECT_DIR$/overboard/core/forms.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/answer_detail.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/answer_form.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/index.html" afterPath="$PROJECT_DIR$/overboard/core/templates/index.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/new_question.html" afterPath="$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/new_question.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/question_page.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/question_shortcut.html" afterPath="$PROJECT_DIR$/overboard/core/templates/question_shortcut.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/tag/tag_page.html" afterPath="$PROJECT_DIR$/overboard/core/templates/tag_NOTUSED/tag_page.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/tag/tags_list.html" afterPath="$PROJECT_DIR$/overboard/core/templates/tag_NOTUSED/tags_list.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/templates/user_page.html" afterPath="$PROJECT_DIR$/overboard/core/templates/users_NOTUSED/user_page_old.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/urls.py" afterPath="$PROJECT_DIR$/overboard/core/urls.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/core/views.py" afterPath="$PROJECT_DIR$/overboard/core/views.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/overboard/settings.py" afterPath="$PROJECT_DIR$/overboard/overboard/settings.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/forms.py" afterPath="$PROJECT_DIR$/overboard/posts/forms.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/templates/answer_detail.html" afterPath="$PROJECT_DIR$/overboard/posts/templates/answer_detail.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/templates/answer_form.html" afterPath="$PROJECT_DIR$/overboard/posts/templates/answer_form.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/templates/new_question.html" afterPath="$PROJECT_DIR$/overboard/posts/templates/new_question.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/templates/question_page.html" afterPath="$PROJECT_DIR$/overboard/posts/templates/question_page.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/templates/question_shortcut.html" afterPath="$PROJECT_DIR$/overboard/posts/templates/question_shortcut.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/templates/questions_list.html" afterPath="$PROJECT_DIR$/overboard/posts/templates/questions_list.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/urls.py" afterPath="$PROJECT_DIR$/overboard/posts/urls.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/posts/views.py" afterPath="$PROJECT_DIR$/overboard/posts/views.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/users/models.py" afterPath="$PROJECT_DIR$/overboard/users/models.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/users/templates/user_page.html" afterPath="$PROJECT_DIR$/overboard/users/templates/user_page.html" />
+      <change beforePath="$PROJECT_DIR$/overboard/users/urls.py" afterPath="$PROJECT_DIR$/overboard/users/urls.py" />
+      <change beforePath="$PROJECT_DIR$/overboard/users/views.py" afterPath="$PROJECT_DIR$/overboard/users/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,101 +46,111 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index_content.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html">
+      <file leaf-file-name="question_shortcut.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/core/templates/question_shortcut.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="312">
-              <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+              <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/index.html">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/users/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-              <folding />
+            <state relative-caret-position="96">
+              <caret line="22" column="69" lean-forward="false" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#73#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="answer_form.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/answer_form.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/users/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/users/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="question_shortcut.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/question_shortcut.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="question_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/question_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1232">
-              <caret line="66" column="28" lean-forward="false" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="answer_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/answer_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-548">
-              <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="questions_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/questions_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="25" />
+              <caret line="0" column="28" lean-forward="false" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="user_page.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/user_page.html">
+        <entry file="file://$PROJECT_DIR$/overboard/users/templates/user_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+            <state relative-caret-position="600">
+              <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="42" />
+              <folding>
+                <element signature="e#115#137#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/posts/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="9" column="47" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="50" />
+              <folding>
+                <marker date="1524748572102" expanded="true" signature="167:698" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/posts/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="121" column="41" lean-forward="false" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_question.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/search_question.html">
+      <file leaf-file-name="question_page.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/overboard/posts/templates/question_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+            <state relative-caret-position="-720">
+              <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/users/templates/register_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+              <folding>
+                <element signature="e#338#356#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index_content.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overboard/users/templates/index_content.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,8 +161,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -145,7 +177,17 @@
       <find>href</find>
       <find>lates</find>
       <find>latest_question_list</find>
+      <find>main</find>
+      <find>core</find>
+      <find>form</find>
+      <find>regis</find>
+      <find>tagi</find>
+      <find>users_old</find>
+      <find>question_detail</find>
     </findStrings>
+    <dirStrings>
+      <dir>D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_21</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -153,38 +195,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/overboard/overboardapp/models.py" />
-        <option value="$PROJECT_DIR$/overboard/overboard/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/overboard/apps/users/forms.py" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/registration/register_form.html" />
+        <option value="$PROJECT_DIR$/overboard/apps/users/views.py" />
+        <option value="$PROJECT_DIR$/overboard/apps/users/urls.py" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/user_page.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/tag/tag_page.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/tag/tags_list.html" />
+        <option value="$PROJECT_DIR$/overboard/tags/models.py" />
+        <option value="$PROJECT_DIR$/overboard/core/models.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/users/models.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/users/views.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/tagi/urls.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/tagi/templates/tags_list.html" />
+        <option value="$PROJECT_DIR$/overboard/applications/users/templates/user_page.html" />
+        <option value="$PROJECT_DIR$/overboard/applications/tagi/views.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/tagi/models.py" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/overboard/applications/users_old/templates/index_content.html" />
+        <option value="$PROJECT_DIR$/overboard/applications/users_old/templates/register_form.html" />
+        <option value="$PROJECT_DIR$/overboard/applications/users_old/templates/user_page.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/models.py" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/masterpage.html" />
         <option value="$PROJECT_DIR$/overboard/overboard/urls.py" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_form.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_done.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/registration/password_reset_confirm.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/registration/password_reset_complete.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/tmp.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/static/masterpage-styles.css" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/signup.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/signup.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/forms.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/users_old/urls.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/users_old/views.py" />
+        <option value="$PROJECT_DIR$/overboard/applications/users_old/forms.py" />
+        <option value="$PROJECT_DIR$/overboard/core/views.py" />
+        <option value="$PROJECT_DIR$/overboard/core/urls.py" />
+        <option value="$PROJECT_DIR$/overboard/core/forms.py" />
+        <option value="$PROJECT_DIR$/overboard/posts/forms.py" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/answer_detail.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/answer_form.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/question_page.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/questions_list.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/templates/questions_list.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/templates/question_shortcut.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/templates/question_page.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/templates/new_question.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/templates/answer_form.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/templates/answer_detail.html" />
+        <option value="$PROJECT_DIR$/overboard/tags/templates/questions_list.html" />
+        <option value="$PROJECT_DIR$/overboard/tags/templates/question_shortcut.html" />
+        <option value="$PROJECT_DIR$/overboard/posts/views.py" />
         <option value="$PROJECT_DIR$/overboard/overboard/settings.py" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/tag/tag_page.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/index.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/tag/tags.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_email.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_complete.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/logged_out.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/urls.py" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/user_page.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/search_question.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/questions_list.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/new_question.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/masterpage.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/views.py" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/registration/login.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/answer_detail.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/question_shortcut.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/question_detail.html" />
-        <option value="$PROJECT_DIR$/overboard/overboardapp/templates/answer_form.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/index.html" />
+        <option value="$PROJECT_DIR$/overboard/core/templates/question_shortcut.html" />
+        <option value="$PROJECT_DIR$/overboard/users/templates/user_page.html" />
+        <option value="$PROJECT_DIR$/overboard/users/views.py" />
+        <option value="$PROJECT_DIR$/overboard/users/urls.py" />
+        <option value="$PROJECT_DIR$/overboard/users/models.py" />
+        <option value="$PROJECT_DIR$/overboard/posts/urls.py" />
       </list>
     </option>
   </component>
@@ -195,8 +256,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="471" />
-    <option name="width" value="1457" />
+    <option name="x" value="701" />
+    <option name="width" value="1227" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -217,47 +278,83 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="git_2018_04_21" type="b2602c69:ProjectViewProjectNode" />
-              <item name="git_2018_04_21" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="git_2018_04_21" type="b2602c69:ProjectViewProjectNode" />
-              <item name="git_2018_04_21" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="overboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="git_2018_04_21" type="b2602c69:ProjectViewProjectNode" />
-              <item name="git_2018_04_21" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="overboard" type="462c0819:PsiDirectoryNode" />
               <item name="overboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="git_2018_04_21" type="b2602c69:ProjectViewProjectNode" />
-              <item name="git_2018_04_21" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="overboard" type="462c0819:PsiDirectoryNode" />
-              <item name="overboardapp" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="posts" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="overboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="overboard" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../git_2018_04_21_bezzmian" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Django_first_project" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="latest_question_list&#9;null&#9;null&#10;pagination&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\core\templates" />
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\tags\templates" />
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\posts\templates" />
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\posts" />
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\users" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\core\templates\posts" />
+      <recent name="D:\studia\_WEB_Zaaw.techn.web_Pietranik\github\git_2018_04_25\overboard\overboard\core\templates\users" />
       <recent name="$PROJECT_DIR$/overboard/overboardapp/templates" />
       <recent name="$PROJECT_DIR$/overboard/overboardapp/templates/registration" />
       <recent name="$PROJECT_DIR$/overboard/overboardapp/static" />
@@ -301,27 +398,42 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.59521097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.331813" sideWeight="0.5171858" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27251995" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23039742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59521097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.331813" sideWeight="0.7303974" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16917293" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.4828142" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24743444" sideWeight="0.25349087" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59521097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24743444" sideWeight="0.74650913" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21643394" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.49785176" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,177 +486,140 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/urls.py">
+    <entry file="file://$PROJECT_DIR$/overboard/posts/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="20" column="60" lean-forward="false" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/views.py">
+    <entry file="file://$PROJECT_DIR$/overboard/posts/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/answer_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="9" selection-end-column="9" />
           <folding>
-            <element signature="e#25#98#0" expanded="false" />
+            <marker date="1524745082234" expanded="true" signature="95:475" ph="..." />
+            <marker date="1524745082234" expanded="true" signature="166:335" ph="..." />
+            <marker date="1524745082234" expanded="true" signature="413:463" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/question_page.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/masterpage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="24">
+          <caret line="36" column="61" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="82" selection-end-column="16" />
           <folding>
-            <element signature="e#25#98#0" expanded="false" />
+            <marker date="1524745082257" expanded="true" signature="144:4069" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="158:257" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="294:4058" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="332:3271" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="373:3252" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="416:3229" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="472:2664" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="524:2633" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="585:1447" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="695:1408" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="1038:1364" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="1096:1314" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="1509:1697" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="1542:1691" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="1770:2598" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="1880:2559" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="2226:2515" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="2286:2465" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="2723:3202" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="2779:2869" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="2939:3171" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="3373:3621" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="3815:4023" ph="..." />
+            <marker date="1524745082257" expanded="true" signature="3869:4006" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/question_shortcut_old.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/masterpage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/tmp.html" />
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/signup.html" />
-    <entry file="file://$PROJECT_DIR$/overboard/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python34/Lib/site-packages/django/contrib/admin/templatetags/admin_list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="44" column="7" lean-forward="true" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="7" />
+        <state relative-caret-position="76">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="30" selection-end-column="8" />
           <folding>
-            <element signature="e#0#15#0" expanded="false" />
+            <marker date="1524748572126" expanded="true" signature="25:1272" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="56:1261" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="100:496" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="145:477" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="170:321" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="346:452" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="543:1246" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="587:709" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="755:1010" ph="..." />
+            <marker date="1524748572126" expanded="true" signature="1053:1222" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/static/masterpage-styles.css">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/questions_list_old.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2671">
-          <caret line="114" column="18" lean-forward="false" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/static/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="39" column="11" lean-forward="false" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+        <state relative-caret-position="264">
+          <caret line="11" column="74" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="13" selection-end-column="8" />
           <folding>
-            <element signature="e#0#24#0" expanded="false" />
-            <marker date="1524265626897" expanded="true" signature="2274:2349" ph="..." />
+            <marker date="1524745082245" expanded="true" signature="226:585" ph="..." />
+            <marker date="1524745082245" expanded="true" signature="274:574" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/admin.py">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/users_NOTUSED/user_page_old.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#32#0" expanded="false" />
+            <marker date="1524748572135" expanded="false" signature="152:166" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="167:2380" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="181:247" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="261:616" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="653:2359" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="770:2344" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="876:2296" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="919:2273" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="975:1373" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1032:1342" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1069:1158" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1195:1305" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1432:2246" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1493:1638" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1696:2032" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="1892:1952" ph="..." />
+            <marker date="1524748572135" expanded="true" signature="2107:2215" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/__init__.py">
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/questions_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="72" lean-forward="false" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/search_question.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -552,7 +627,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboard/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/question_shortcut.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/new_question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/index_content.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -560,222 +651,347 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboard/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboard/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_confirm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-164">
-          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="e#195#215#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_done.html">
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/answer_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/answer_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/posts_NOTUSED/answer_detail_old.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <marker date="1524745082320" expanded="true" signature="57:2554" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="88:2543" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="132:2095" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="172:2076" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="221:1015" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="317:988" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="699:956" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="745:918" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="1065:1219" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="1098:1213" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="1280:2053" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="1376:2026" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="1762:1994" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="1810:1956" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="2142:2528" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="2186:2250" ph="..." />
+            <marker date="1524745082320" expanded="true" signature="2308:2509" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/tags/templates/question_shortcut.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="26" column="108" lean-forward="false" selection-start-line="26" selection-start-column="108" selection-end-line="26" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/tags/templates/tag_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/tags/templates/tags_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/users/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#24#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/tags/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#57#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/tags/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/password_reset_complete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/logged_out.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/password_reset_done.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/password_reset_email.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/password_reset_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/registration/register_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/tags/templates/questions_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/search_question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-240">
+          <caret line="20" column="60" lean-forward="false" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/core/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/overboard/overboard/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="17" />
+        <state relative-caret-position="-1416">
+          <caret line="43" column="12" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/tag/tags.html">
+    <entry file="file://$PROJECT_DIR$/overboard/overboard/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="27" />
+        <state relative-caret-position="-216">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/tag/tag_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/register_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_form.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/questions_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_email.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/masterpage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
-          <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+          <caret line="36" column="34" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/password_reset_complete.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/index_content.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state relative-caret-position="432">
+          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/logged_out.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/new_question.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3444">
-          <caret line="154" column="42" lean-forward="false" selection-start-line="154" selection-start-column="42" selection-end-line="154" selection-end-column="42" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="20" selection-end-column="9" />
           <folding>
-            <element signature="e#25#98#0" expanded="false" />
+            <marker date="1524747857469" expanded="true" signature="67:624" ph="..." />
+            <marker date="1524747857469" expanded="true" signature="82:166" ph="..." />
+            <marker date="1524747857469" expanded="true" signature="181:612" ph="..." />
+            <marker date="1524747857469" expanded="true" signature="297:446" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/urls.py">
+    <entry file="file://$PROJECT_DIR$/overboard/core/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="7" column="73" lean-forward="false" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="73" />
+        <state relative-caret-position="360">
+          <caret line="35" column="47" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/masterpage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1488">
-          <caret line="62" column="30" lean-forward="false" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/index_content.html">
+    <entry file="file://$PROJECT_DIR$/overboard/core/templates/question_shortcut.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
-          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+          <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/answer_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-548">
-          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/user_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/search_question.html">
+    <entry file="file://$PROJECT_DIR$/overboard/users/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/questions_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/question_shortcut.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/question_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="66" column="28" lean-forward="false" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overboard/overboardapp/templates/answer_form.html">
+    <entry file="file://$PROJECT_DIR$/overboard/users/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <caret line="0" column="28" lean-forward="false" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/users/templates/register_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="e#338#356#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/users/templates/index_content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="22" column="69" lean-forward="false" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/users/templates/user_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="e#115#137#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="47" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="50" />
+          <folding>
+            <marker date="1524748572102" expanded="true" signature="167:698" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="121" column="41" lean-forward="false" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overboard/posts/templates/question_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-720">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
           <folding />
         </state>
       </provider>

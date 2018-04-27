@@ -1,0 +1,30 @@
+<div class="panel-body">
+    <div class="post-row">
+        <div class="col-md-2 col-xs-1">
+            <table class="post-details">
+                <tr>
+                    <td>{{ question.votes.count }}</td>
+                    <td>{{ question.answer_set.count }}</td>
+                </tr>
+                <tr>
+                    <th>votes</th>
+                    <th>answers</th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-10 panel post">
+            <div class="panel-heading">
+                <a href="{% url 'posts:question_page' question.id %}">{{ question.title }}</a>
+            </div>
+
+            <div class="panel-body">
+                {% for tag in question.tag_set.all %}
+                <button class="btn" onclick="location.href='{% url 'tags:tag_page' tag.id %}'" type="button">{{ tag.tag_name }}</button>
+                {% endfor %}
+            </div>
+            <div class="panel-footer">
+                asked on {{ question.pub_date }} by
+                <a href="{% url 'users:user_page' question.asked_by.id %}">{{ question.asked_by }}</a></div>
+        </div>
+    </div>
+</div>
