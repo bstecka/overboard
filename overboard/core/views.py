@@ -39,6 +39,7 @@ class TopQuestionList(QuestionList):
         return questions.order_by('-number_of_votes')
 
 
+''' old views, replaced by TopQuestionList(QUestionList) '''
 '''def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')
     return render(request, 'index_content.html', {'questions': latest_questions, 'selected_tab': 'last'})
@@ -56,6 +57,7 @@ def top_week_questions(request):
 
 def top_month_questions(request):
     return render(request, 'index_content.html', {'questions': TopQuestionList().get_queryset(), 'selected_tab': 'month'})'''
+
 
 
 def search(request):

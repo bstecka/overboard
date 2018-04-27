@@ -12,4 +12,6 @@ urlpatterns = [
     path('new_answer/<int:question_id>/', login_required(views.new_answer), name='new_answer'),
     path('answer_vote/<int:question_id>/', login_required(views.answer_vote), name='answer_vote'),
     path('question_vote/<int:question_id>/', login_required(views.question_vote), name='question_vote'),
+
+    # path('search/', views.search, name='search'),
 ]

@@ -28,15 +28,19 @@ class QuestionList(ListView):
         return Question.objects.all().order_by('-pub_date')
 
 
-class TopQuestionList(QuestionList):
-    delta_time = 0
+''' not yet used in app posts. currently this option is in core app'''
+# class TopQuestionList(QuestionList):
+#     delta_time = 0
+#
+#     def get_queryset(self):
+#         from_date = datetime.datetime.now() - datetime.timedelta(days=self.delta_time)
+#         questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).annotate(
+#             number_of_votes=Count('votes'))
+#         return questions.order_by('-number_of_votes')
 
-    def get_queryset(self):
-        from_date = datetime.datetime.now() - datetime.timedelta(days=self.delta_time)
-        questions = Question.objects.filter(pub_date__range=[from_date, datetime.datetime.now()]).annotate(
-            number_of_votes=Count('votes'))
-        return questions.order_by('-number_of_votes')
 
+
+''' old views'''
 
 '''def latest_question_list(request):
     latest_questions = Question.objects.all().order_by('-pub_date')
