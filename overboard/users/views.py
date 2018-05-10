@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import login, authenticate
 import datetime
 
@@ -30,6 +30,22 @@ class QuestionList(ListView):
 
     def get_queryset(self):
         return Question.objects.all().order_by('-pub_date')
+
+
+class UserDetailView(DetailView):
+    model = User
+    context_object_name = 'otheruser'
+    template_name = 'user_page.html'
+    form = AnswerForm
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            notifications = UsersNotification.objects.filter(user=self.request.user)
+        else:
+            notifications = UsersNotification.objects.all()
+        context['notifications'] = notifications
+        return context
 
 
 def user_page(request, user_id):

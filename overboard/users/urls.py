@@ -6,6 +6,6 @@ from . import views
 app_name = 'users'
 urlpatterns = [
     path('', views.QuestionList.as_view(selected_tab='last'), name='users'),
-    path('<int:user_id>/', views.user_page, name='user_page'),
+    path('<int:pk>/', views.UserDetailView.as_view(), name='user_page'),
     path('register/', views.register, name='register'),
 ]

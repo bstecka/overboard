@@ -12,7 +12,7 @@
     </div>
     <div>
         <p>Username: </p>
-        <h1>{{otheruser.username }}</h1><br>
+        <h1>{{otheruser.username }}{{ otheruser.pk }}</h1><br>
         <p>Name: </p>
         <h4>{{ otheruser.first_name }} {{ otheruser.last_name }}</h4><br>
         {% if user.is_authenticated %}
@@ -59,6 +59,7 @@
                         </div>
 
                         <div class="panel-body panel-body-right">
+                            pk: {{ question.pk }}
                             answers: {{ question.answer_set.count }}
                         </div>
                     </div>
