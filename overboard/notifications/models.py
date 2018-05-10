@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Notification(models.Model):
-    notification_text = models.CharField(max_length=200, default='')
-    notification_title = models.CharField(max_length=200, default='')
-    notification_type = models.CharField(max_length=200, default='')
+    content = models.CharField(max_length=200, default='')
+    title = models.CharField(max_length=200, default='')
+    type = models.CharField(max_length=200, default='')
     question_id = models.IntegerField(null=True)
 
     def __str__(self):
