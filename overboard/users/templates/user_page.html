@@ -1,7 +1,7 @@
 {% extends 'masterpage.html' %}
 
 {% block title %}
-{{otheruser.username}}
+{{otheruser.username}}'s Profile Page
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,13 @@
         {% endif %}
         <hr>
     </div>
-
+    {% if user.is_authenticated %}
+    {% if user.username == otheruser.username %}
+    <div class="basic">
+    {% include 'notifications_list.html' %}
+    </div>
+    {% endif %}
+    {% endif %}
     <div class="container">
         <h4>User's questions: {{ otheruser.question_set.count }}</h4>
 
