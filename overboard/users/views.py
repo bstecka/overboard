@@ -10,6 +10,7 @@ import datetime
 
 from posts.models import Question, Vote, Answer
 from tags.models import Tag
+from notifications.models import Notification, UsersNotification
 from .forms import RegistrationForm
 from posts.forms import AnswerForm
 
@@ -33,8 +34,12 @@ class QuestionList(ListView):
 
 def user_page(request, user_id):
     other_user = get_object_or_404(User, pk=user_id)
+    if request.user.is_authenticated:
+        notifications = UsersNotification.objects.filter(user=request.user)
+    else:
+        notifications = UsersNotification.objects.all()
     form = AnswerForm
-    return render(request, 'user_page.html', {'otheruser': other_user, 'form': form })
+    return render(request, 'user_page.html', {'otheruser': other_user, 'form': form, 'notifications': notifications })
 
 
 def register(request):

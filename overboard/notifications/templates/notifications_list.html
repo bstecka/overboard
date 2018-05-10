@@ -1,2 +1,4 @@
-{% include "notification.html" %}
+{% for n in notifications %}
+{% include "notification.html" with notification=n %}
+{% endfor %}
 <hr>

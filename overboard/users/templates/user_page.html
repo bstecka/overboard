@@ -24,7 +24,7 @@
     {% if user.is_authenticated %}
     {% if user.username == otheruser.username %}
     <div class="basic">
-    {% include 'notifications_list.html' %}
+    {% include 'notifications_list.html' with notifications=notifications %}
     </div>
     {% endif %}
     {% endif %}
