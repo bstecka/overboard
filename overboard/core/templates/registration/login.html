@@ -15,11 +15,18 @@
       <h3>Log in or create <a href="{% url 'users:register'%}">a new account</a></h3>
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-          <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
+            <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-lg btn-primary btn-block">Login with Facebook</a>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
             <a href="{% url 'social:begin' 'github' %}" class="btn btn-lg btn-info btn-block">Login with GitHub</a><br>
         </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-lg btn-info btn-block">Login with Twitter</a><br>
+        </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-lg btn-primary btn-block">Login with Google</a>
+          </div>
+      </div>
       </div>
       <div class="login-or">
         <hr class="hr-or">

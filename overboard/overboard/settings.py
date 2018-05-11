@@ -136,8 +136,18 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
+
 SOCIAL_AUTH_GITHUB_KEY = '28d673e68c49d4574d62'
 SOCIAL_AUTH_GITHUB_SECRET = 'd6e99dbe3c633bfc7636520a71262d12e51cb2e7'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '579277219095332'
+SOCIAL_AUTH_FACEBOOK_SECRET = '9217a68ef7e4269c5935a9514a6b6d14'
+
+SOCIAL_AUTH_TWITTER_KEY = '1H15uTpz1PYdhxzOKbTAccCZC'
+SOCIAL_AUTH_TWITTER_SECRET = '6hxZZDnkyQ1ei9jyjtYDHGM0kQ9pdZTMglQKETa273lAtnubtb'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '243966779184-71l2uotc2f6t39ngleci66a3d4f1vnup.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KKNYThbtRNWXcdlghl3ZpDLf'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -151,8 +161,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
+
     'social_core.backends.twitter.TwitterOAuth',
+
     'social_core.backends.facebook.FacebookOAuth2',
+
+    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+    'social_core.backends.google.GoogleOpenId',  # for Google authentication
+    'social_core.backends.google.GoogleOAuth2',  # for Google authentication
 
     'django.contrib.auth.backends.ModelBackend',
 )
