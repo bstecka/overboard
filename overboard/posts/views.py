@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView
 from django.views import View
 from .models import Question, Vote, Answer
 from tags.models import Tag
+from users.models import UserExtended
 from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
 import datetime
 # Create your views here.
@@ -117,10 +118,16 @@ def question_vote(request, question_id):
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
+                vote_target_user = UserExtended.objects.filter(user=question.asked_by).first()
+                vote_target_user.reputation = vote_target_user.reputation - found_vote.value
+                vote_target_user.save()
             if not found_duplicate_vote and user != question.asked_by:
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
+                vote_target_user = UserExtended.objects.filter(user=question.asked_by).first()
+                vote_target_user.reputation = vote_target_user.reputation + value
+                vote_target_user.save()
         else:
             return HttpResponseRedirect('/404')
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
@@ -146,10 +153,16 @@ def answer_vote(request, question_id):
                     found_vote = v
             if found_duplicate_vote or found_opposite_vote:
                 found_vote.delete()
+                vote_target_user = UserExtended.objects.filter(user=answer.published_by).first()
+                vote_target_user.reputation = vote_target_user.reputation - found_vote.value
+                vote_target_user.save()
             if not found_duplicate_vote and user != answer.published_by:
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
+                vote_target_user = UserExtended.objects.filter(user=answer.published_by).first()
+                vote_target_user.reputation = vote_target_user.reputation + value
+                vote_target_user.save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 

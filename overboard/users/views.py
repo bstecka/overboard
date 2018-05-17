@@ -3,6 +3,7 @@ from django.db.models import Count, Sum, Q
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from .models import UserExtended
 from django.views import View
 from django.views.generic import ListView
 from django.contrib.auth import login, authenticate
@@ -33,8 +34,9 @@ class QuestionList(ListView):
 
 def user_page(request, user_id):
     other_user = get_object_or_404(User, pk=user_id)
+    reputation = UserExtended.objects.filter(user=other_user).first().reputation
     form = AnswerForm
-    return render(request, 'user_page.html', {'otheruser': other_user, 'form': form })
+    return render(request, 'user_page.html', {'otheruser': other_user, 'reputation': reputation, 'form': form })
 
 
 def register(request):
