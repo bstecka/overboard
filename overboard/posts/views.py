@@ -9,6 +9,7 @@ from django.views import View
 from .models import Question, Vote, Answer
 from tags.models import Tag
 from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
+from notifications.models import UserNotificationNewAnswer
 import datetime
 # Create your views here.
 
@@ -91,10 +92,10 @@ def new_answer(request, question_id):
         if answer_form.is_valid():
             current_date = datetime.datetime.now()
             answer_text = answer_form.cleaned_data['answer']
-            answer = Answer.objects.create(
-                published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
-            )
+            answer = Answer.objects.create(published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0)
             answer.save()
+            notification = UserNotificationNewAnswer.objects.create_notification(answer)
+            notification.save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
