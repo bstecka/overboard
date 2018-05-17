@@ -1,8 +1,9 @@
 <div class="alert alert-info fade in">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <a href="{% url 'notifications:delete' user_notification.id %}" class="close" data-dismiss="alert" aria-hidden="true">×</a>
+  <p>{{ user_notification.notif_date }}</p> <br>
   <h4>{{user_notification.title}}</h4>
   <p>{{user_notification.content}}</p>
   <p>
-    <a href="{% url 'posts:question_page' user_notification.related_question.id %}" class="btn btn-info">Zobacz</a>
+    <a href="{% url 'notifications:notification_visited' user_notification.id %}" class="btn btn-info">Zobacz</a>
   </p>
 </div>

@@ -9,7 +9,7 @@ from django.views import View
 from .models import Question, Vote, Answer
 from tags.models import Tag
 from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
-from notifications.models import UserNotificationNewAnswer
+from notifications.models import UserNotification
 import datetime
 # Create your views here.
 
@@ -94,7 +94,7 @@ def new_answer(request, question_id):
             answer_text = answer_form.cleaned_data['answer']
             answer = Answer.objects.create(published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0)
             answer.save()
-            notification = UserNotificationNewAnswer.objects.create_notification(answer)
+            notification = UserNotification.objects.create_notification_for_new_answer(answer)
             notification.save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
@@ -122,6 +122,8 @@ def question_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
+                if len(question.all_vote_set) > 1:
+                    UserNotification.objects.create_notification_for_popular_question(question).save()
         else:
             return HttpResponseRedirect('/404')
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))

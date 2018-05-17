@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserNotificationNewAnswer
+from .models import UserNotification
 
-admin.site.register(UserNotificationNewAnswer)
+admin.site.register(UserNotification)
 # Register your models here.

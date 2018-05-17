@@ -10,7 +10,7 @@ import datetime
 
 from posts.models import Question, Vote, Answer
 from tags.models import Tag
-from notifications.models import UserNotificationNewAnswer
+from notifications.models import UserNotification
 from .forms import RegistrationForm
 from posts.forms import AnswerForm
 
@@ -41,9 +41,9 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            notifications = UserNotificationNewAnswer.objects.filter(user=self.request.user)
+            notifications = UserNotification.objects.filter(user=self.request.user)
         else:
-            notifications = UserNotificationNewAnswer.objects.all()
+            notifications = UserNotification.objects.all()
         context['notifications'] = notifications
         return context
 
@@ -51,9 +51,9 @@ class UserDetailView(DetailView):
 def user_page(request, user_id):
     other_user = get_object_or_404(User, pk=user_id)
     if request.user.is_authenticated:
-        notifications = UserNotificationNewAnswer.objects.filter(user=request.user)
+        notifications = UserNotification.objects.filter(user=request.user)
     else:
-        notifications = UserNotificationNewAnswer.objects.all()
+        notifications = UserNotification.objects.all()
     form = AnswerForm
     return render(request, 'user_page.html', {'otheruser': other_user, 'form': form, 'notifications': notifications })
 
