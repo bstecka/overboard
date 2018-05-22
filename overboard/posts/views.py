@@ -66,9 +66,9 @@ class NewQuestionView(View):
     form_class = NewQuestionForm()
 
     def post(self, request):
-        form = NewQuestionForm()
+        form = NewQuestionForm(request.POST)
         form.save()
-        return HttpResponseRedirect(reverse('users:user_page', args=request.user.id))
+        return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
 
     def get(self, request):
         user = UserExtended.objects.filter(user=self.request.user).first()
