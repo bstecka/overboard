@@ -63,15 +63,17 @@ def top_month_questions(request):
 
 
 class NewQuestionView(View):
-    form_class = NewQuestionForm
+    form_class = NewQuestionForm()
 
     def post(self, request):
-        form = self.form_class(request.POST)
+        form = NewQuestionForm()
         form.save()
-        return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
+        return HttpResponseRedirect(reverse('users:user_page', args=request.user.id))
 
     def get(self, request):
-        return render(request, 'new_question.html', {'form': self.form_class()})
+        user = UserExtended.objects.filter(user=self.request.user).first()
+        return render(request, 'new_question.html', {'form': NewQuestionForm(user=user)})
+
 
 
 class QuestionCreateView(CreateView):
