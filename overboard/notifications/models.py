@@ -11,6 +11,9 @@ class NotificationManager(models.Manager):
     def create_notification_for_popular_question(self, question):
         return UserNotification.create_for_popular_question(question=question)
 
+    def create_notification_for_popular_answer(self, answer):
+        return UserNotification.create_for_popular_answer(answer=answer)
+
 
 class UserNotification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -37,7 +40,17 @@ class UserNotification(models.Model):
             user=question.asked_by,
             related_question=question,
             title='Popular question',
-            content='Your question is popular! ' + str(len(question.all_vote_set))
+            content='Your question is popular! '
+        )
+        return notification
+
+    @classmethod
+    def create_for_popular_answer(cls, answer):
+        notification = cls(
+            user=answer.question.asked_by,
+            related_question=answer.question,
+            title='Popular answer',
+            content='Your answer is popular!'
         )
         return notification
 

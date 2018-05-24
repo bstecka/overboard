@@ -122,7 +122,7 @@ def question_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
-                if len(question.all_vote_set) > 1:
+                if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
                     UserNotification.objects.create_notification_for_popular_question(question).save()
         else:
             return HttpResponseRedirect('/404')
@@ -153,6 +153,8 @@ def answer_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
+                if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
+                    UserNotification.objects.create_notification_for_popular_answer(answer).save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
