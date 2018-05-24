@@ -9,6 +9,7 @@ from django.views import View
 from .models import Question, Vote, Answer
 from tags.models import Tag
 from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
+from notifications.models import UserNotification
 import datetime
 # Create your views here.
 
@@ -91,10 +92,10 @@ def new_answer(request, question_id):
         if answer_form.is_valid():
             current_date = datetime.datetime.now()
             answer_text = answer_form.cleaned_data['answer']
-            answer = Answer.objects.create(
-                published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0
-            )
+            answer = Answer.objects.create(published_by=user, content=answer_text, pub_date=current_date, question=question, accepted=0)
             answer.save()
+            notification = UserNotification.objects.create_notification_for_new_answer(answer)
+            notification.save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
@@ -121,6 +122,8 @@ def question_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
+                if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
+                    UserNotification.objects.create_notification_for_popular_question(question).save()
         else:
             return HttpResponseRedirect('/404')
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
@@ -150,6 +153,8 @@ def answer_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
+                if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
+                    UserNotification.objects.create_notification_for_popular_answer(answer).save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 

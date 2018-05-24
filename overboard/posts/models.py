@@ -41,7 +41,7 @@ class Question(models.Model):
         return votes_all
 
     def __str__(self):
-        return 'Question ' + self.title.__str__()
+        return self.title.__str__()
 
 
 class Answer(models.Model):
@@ -54,3 +54,5 @@ class Answer(models.Model):
 
     def __str__(self):
         return 'Answer to ' + self.question.__str__()
+
+

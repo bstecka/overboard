@@ -1,0 +1,7 @@
+{% load pagination_tags %}
+{% autopaginate notifications 5 %}
+{% for user_notification in notifications %}
+{% include "notification.html" %}
+{% endfor %}
+{% paginate %}
+<hr>

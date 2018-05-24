@@ -23,6 +23,7 @@ urlpatterns = [
     path('tags/', include('tags.urls')),
     path('users/', include('users.urls')),
     path('', include('core.urls')),
+    path('notifications/', include('notifications.urls')),
     #path('index/', include('core.urls')),
     path('questions/', include('posts.urls')),
 ]
