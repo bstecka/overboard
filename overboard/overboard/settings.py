@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pagination_bootstrap',
+    'social_django',
+    #'social_django_mongoengine',
     'core',
     'tags',
     'users',
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pagination_bootstrap.middleware.PaginationMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'overboard.urls'
@@ -69,6 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -130,15 +135,72 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
+
+# SOCIAL_AUTH_STORAGE = 'social_django_mongoengine.models.DjangoStorage'
+# SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+# SOCIAL_AUTH_PIPELINE = (
+#     'social_auth.backends.pipeline.social.social_auth_user',
+#     'social_auth.backends.pipeline.associate.associate_by_email',
+#     'social_auth.backends.pipeline.user.get_username',
+#     'social_auth.backends.pipeline.user.create_user',
+#     'social_auth.backends.pipeline.social.associate_user',
+#     'social_auth.backends.pipeline.user.update_user_details',
+# )
+
+# True - redirects to https, False - redirects to http
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+
+# Github sign in
+SOCIAL_AUTH_GITHUB_KEY = '28d673e68c49d4574d62'
+SOCIAL_AUTH_GITHUB_SECRET = 'd6e99dbe3c633bfc7636520a71262d12e51cb2e7'
+
+# Facebok sign in
+SOCIAL_AUTH_FACEBOOK_KEY = '579277219095332'
+SOCIAL_AUTH_FACEBOOK_SECRET = '9217a68ef7e4269c5935a9514a6b6d14'
+
+# Twitter sign in
+SOCIAL_AUTH_TWITTER_KEY = '1H15uTpz1PYdhxzOKbTAccCZC'
+SOCIAL_AUTH_TWITTER_SECRET = '6hxZZDnkyQ1ei9jyjtYDHGM0kQ9pdZTMglQKETa273lAtnubtb'
+
+# Google sign in
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '243966779184-71l2uotc2f6t39ngleci66a3d4f1vnup.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KKNYThbtRNWXcdlghl3ZpDLf'
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+'https://www.googleapis.com/auth/userinfo.email',
+'https://www.googleapis.com/auth/userinfo.profile'
+]
+SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
+'https://www.googleapis.com/auth/plus.login',
+'https://www.googleapis.com/auth/userinfo.email',
+'https://www.googleapis.com/auth/userinfo.profile'
+]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-"django.contrib.auth.context_processors.auth",
-"django.core.context_processors.debug",
-"django.core.context_processors.i18n",
-"django.core.context_processors.media",
-"django.core.context_processors.request"
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request"
 )
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.yahoo.YahooOpenId',
+
+    'django.contrib.auth.backends.ModelBackend',
+
+)
