@@ -1,7 +1,7 @@
 {% extends 'masterpage.html' %}
 
 {% block title %}
-{{otheruser.username}}'s Profile Page
+Profile page - {{otheruser.username}}
 {% endblock %}
 
 {% block content %}
@@ -11,14 +11,22 @@
         <hr>
     </div>
     <div>
-        <p>Username: </p>
-        <h1>{{otheruser.username }}{{ otheruser.pk }}</h1><br>
+        <h1 style="margin-bottom:20">
+            <span style="position: relative; top:2">
+                {% if reputation < 5 %}{% include 'medal-1.svg' %}{% elif reputation < 10 %}{% include 'medal-2.svg' %}
+                {% elif reputation < 20 %}{% include 'medal-3.svg' %}{% else %}{% include 'medal-4.svg' %}{% endif %}
+            </span>{{otheruser.username}}
+        </h1>
+        {% if otheruser.firstname or otheruser.last_name %}
         <p>Name: </p>
         <h4>{{ otheruser.first_name }} {{ otheruser.last_name }}</h4><br>
-        {% if user.is_authenticated %}
-        <p>Mail: </p>
-        <h4>{{ otheruser.email }}</h4><br>
         {% endif %}
+        {% if user.is_authenticated and otheruser.email %}
+        <p>E-mail: </p>
+        <h4 style="margin-bottom:15">{{ otheruser.email }}</h4>
+        {% endif %}
+        <p>Reputation: </p>
+        <h4 style="margin-bottom:30">{{ reputation }} point{% if reputation != 1 %}s{% endif %}</h4>
         <hr>
     </div>
     {% if user.is_authenticated %}

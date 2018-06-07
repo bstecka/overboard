@@ -8,8 +8,9 @@ from django.views.generic.edit import CreateView
 from django.views import View
 from .models import Question, Vote, Answer
 from tags.models import Tag
-from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
+from users.models import UserExtended
 from notifications.models import UserNotification
+from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
 import datetime
 # Create your views here.
 
@@ -63,15 +64,16 @@ def top_month_questions(request):
 
 
 class NewQuestionView(View):
-    form_class = NewQuestionForm
+    form_class = NewQuestionForm()
 
     def post(self, request):
-        form = self.form_class(request.POST)
+        form = NewQuestionForm(request.POST)
         form.save()
         return HttpResponseRedirect(reverse('users:user_page', args=(request.user.id,)))
 
     def get(self, request):
-        return render(request, 'new_question.html', {'form': self.form_class()})
+        user = UserExtended.objects.filter(user=self.request.user).first()
+        return render(request, 'new_question.html', {'form': NewQuestionForm(user=user)})
 
 
 class QuestionCreateView(CreateView):
@@ -116,12 +118,21 @@ def question_vote(request, question_id):
                 elif v.voter == user:
                     found_opposite_vote = True
                     found_vote = v
+            voter = UserExtended.objects.filter(user=user).first()
             if found_duplicate_vote or found_opposite_vote:
-                found_vote.delete()
+                if not (voter.reputation < 10 and value < 0):
+                    found_vote.delete()
+                    vote_target_user = UserExtended.objects.filter(user=question.asked_by).first()
+                    vote_target_user.reputation = vote_target_user.reputation - found_vote.value
+                    vote_target_user.save()
             if not found_duplicate_vote and user != question.asked_by:
                 current_date = datetime.datetime.now()
-                vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
-                vote.save()
+                if not (voter.reputation < 10 and value < 0):
+                    vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
+                    vote.save()
+                    vote_target_user = UserExtended.objects.filter(user=question.asked_by).first()
+                    vote_target_user.reputation = vote_target_user.reputation + value
+                    vote_target_user.save()
                 if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
                     UserNotification.objects.create_notification_for_popular_question(question).save()
         else:
@@ -147,12 +158,20 @@ def answer_vote(request, question_id):
                 elif v.voter == user:
                     found_opposite_vote = True
                     found_vote = v
+            voter = UserExtended.objects.filter(user=user).first()
             if found_duplicate_vote or found_opposite_vote:
-                found_vote.delete()
+                if not (voter.reputation < 10 and value < 0):
+                    found_vote.delete()
+                    vote_target_user = UserExtended.objects.filter(user=answer.published_by).first()
+                    vote_target_user.reputation = vote_target_user.reputation - found_vote.value
+                    vote_target_user.save()
             if not found_duplicate_vote and user != answer.published_by:
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
+                vote_target_user = UserExtended.objects.filter(user=answer.published_by).first()
+                vote_target_user.reputation = vote_target_user.reputation + value
+                vote_target_user.save()
                 if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
                     UserNotification.objects.create_notification_for_popular_answer(answer).save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
