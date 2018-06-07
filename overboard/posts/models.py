@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.auth.models import User
+from hitcount.models import HitCount, HitCountMixin
 from datetime import datetime
 # Create your models here.
 
@@ -28,12 +29,15 @@ class Vote(models.Model):
         return 'Vote on ' + self.target.__str__()
 
 
-class Question(models.Model):
+class Question(models.Model, HitCountMixin):
     title = models.CharField(max_length=200, default='')
     content = models.CharField(max_length=600, default='')
     pub_date = models.DateTimeField(default=datetime.now, blank=True)
     asked_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     votes = GenericRelation(Vote)
+    hit_count_generic = GenericRelation(
+        HitCount, object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation')
 
     @property
     def all_vote_set(self):

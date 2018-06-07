@@ -52,9 +52,10 @@
                             {{ question.content }}
                         </div>
                         <div class="panel-body panel-body-right">
-                            asked {{ question.get_time_diff }} sec ago by
-                            <a href="{% url 'users:user_page' question.asked_by.id %}">{{ question.asked_by }}</a>
+                            <p>asked on {% now "jS F Y H:i" %} by<a href="{% url 'users:user_page' question.asked_by.id %}">{{ question.asked_by }}</a></p>
+                            <p>viewed {{ question.hit_count.hits }} times</p>
                         </div>
+                        {% include 'tags_labels.html' %}
                     </div>
                 </div>
             </div>

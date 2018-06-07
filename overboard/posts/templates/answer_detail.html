@@ -40,8 +40,7 @@
                 {{ answer.content }}
             </div>
             <div class="panel-body panel-body-right">
-                answered {{ answer.get_time_diff }} sec ago by
-                <a href="{% url 'users:user_page' answer.published_by.id %}">{{ answer.published_by }}</a>
+                answered on {% now "jS F Y H:i" %} by<a href="{% url 'users:user_page' answer.published_by.id %}">{{ answer.published_by }}</a>
             </div>
         </div>
     </div>

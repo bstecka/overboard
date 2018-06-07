@@ -6,13 +6,16 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.views import View
-from .models import Question, Vote, Answer
+from hitcount.views import HitCountDetailView
 from tags.models import Tag
-from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
 from notifications.models import UserNotification
+from .models import Question, Vote, Answer
+from .forms import AnswerForm, VoteForm, AnswerVoteForm, NewQuestionForm
 import datetime
 # Create your views here.
 
+num_of_votes_popular_question_not = 0
+num_of_votes_popular_answer_not = 0
 
 class QuestionList(ListView):
     model = Question
@@ -122,10 +125,8 @@ def question_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=question)
                 vote.save()
-                if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
+                if value == 1 and question.all_vote_set.filter(value=1).count() > num_of_votes_popular_answer_not:
                     UserNotification.objects.create_notification_for_popular_question(question).save()
-        else:
-            return HttpResponseRedirect('/404')
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
@@ -153,30 +154,39 @@ def answer_vote(request, question_id):
                 current_date = datetime.datetime.now()
                 vote = Vote.objects.create(voter=user, vote_date=current_date, value=value, target=answer)
                 vote.save()
-                if value == 1 and len(question.all_vote_set.filter(value=1)) > 0:
+                if value == 1 and question.all_vote_set.filter(value=1).count() > num_of_votes_popular_answer_not:
                     UserNotification.objects.create_notification_for_popular_answer(answer).save()
     return HttpResponseRedirect(reverse('posts:question_page', args=(question.id,)))
 
 
-def question_detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    vote_sum = question.votes.all().aggregate(Sum('value'))
-    previous_vote = 0
-    user = User.objects.filter(username=request.user.get_username()).first()
+class QuestionView(HitCountDetailView):
+    model = Question
+    context_object_name = 'question'
+    template_name = 'question_page.html'
+    count_hit = True
 
-    answers = Answer.objects.filter(question=question)
-    answer_votes = {'answer_id': 0}
-    answer_sums = {'answer_id': 0}
-    for a in answers.all():
-        answer_sums[a.id] = a.votes.aggregate(Sum('value'))
-        for v in a.votes.all():
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionView, self).get_context_data(**kwargs)
+        question = self.object
+        user = User.objects.filter(username=self.request.user.get_username()).first()
+        answers = Answer.objects.filter(question=question)
+
+        answer_votes = {'answer_id': 0}
+        answer_sums = {'answer_id': 0}
+        for a in answers.all():
+            answer_sums[a.id] = a.votes.aggregate(Sum('value'))
+            for v in a.votes.all():
+                if v.voter == user:
+                    answer_votes[a.id] = v.value
+
+        previous_vote = 0
+        for v in question.votes.all():
             if v.voter == user:
-                answer_votes[a.id] = v.value
+                previous_vote = v.value
 
-    for v in question.votes.all():
-        if v.voter == user:
-            previous_vote = v.value
-
-    return render(request, 'question_page.html',
-                  {'question': question, 'answersums': answer_sums, 'answervotes': answer_votes,
-                   'vote_sum': vote_sum, 'previous_vote': previous_vote})
+        context['answersums'] = answer_sums
+        context['answervotes'] = answer_votes
+        context['vote_sum'] = question.votes.all().aggregate(Sum('value'))
+        context['previous_vote'] = previous_vote
+        return context
