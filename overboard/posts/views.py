@@ -75,7 +75,6 @@ class NewQuestionView(View):
         return render(request, 'new_question.html', {'form': NewQuestionForm(user=user)})
 
 
-
 class QuestionCreateView(CreateView):
     model = Question
     fields = ['title', 'content']
